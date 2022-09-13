@@ -5,7 +5,7 @@ void	ft_putlst_fd(l_list **lst, int fd)
 	l_list	*first_node;
 	l_list	*last_node;
 	
-	if (lst == NULL)
+	if (lst == NULL || *lst == NULL)
 		return ;
 	if ((*lst)->prev == NULL)
 	{

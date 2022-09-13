@@ -4,6 +4,17 @@ void	ft_lstclear(l_list **lst)
 {	
 	l_list	*l;
 
+	if (lst == NULL)
+		return ;
+	while (lst != NULL)
+		ft_delfirst(lst);
+}
+
+/*
+void	ft_lstclear(l_list **lst)
+{	
+	l_list	*l;
+
 	if (lst == NULL || *lst == NULL)
 		return ;
 	if ((*lst)->prev == NULL)
@@ -23,3 +34,4 @@ void	ft_lstclear(l_list **lst)
 	}
 	lst = NULL;
 }
+*/
