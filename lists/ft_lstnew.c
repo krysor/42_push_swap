@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "lists.h"
 
 l_list	*ft_lstnew(int nb)
 {

@@ -1,4 +1,4 @@
-SRCS	= input.c ft_atol.c lists.c
+SRCS	= input.c ft_atol.c
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -11,7 +11,8 @@ CFLAGS	= -Wall -Wextra -Werror
 
 ${NAME}:	${OBJS}
 			${MAKE} -C libft
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} libft/libft.a
+			${MAKE} -C lists
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} libft/libft.a lists/lists.a
 
 all:		${NAME}
 

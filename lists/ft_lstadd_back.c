@@ -1,7 +1,13 @@
-#include "libft.h"
+#include "lists.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+//not working properly for an empty list
+void	ft_lstadd_back(l_list **lst, l_list *new)
 {
+	if (lst == NULL)
+	{
+		lst = &new;
+		return ;
+	}
 	if (*lst == NULL)
 	{
 		*lst = new;
@@ -24,3 +30,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		(*lst)->prev = new;
 	}
 }
+ 
