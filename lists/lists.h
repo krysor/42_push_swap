@@ -15,7 +15,10 @@ void	ft_lstadd_front(l_list **lst, l_list *new);
 int		ft_lstsize(l_list **lst);
 l_list	*ft_lstlast(l_list **lst);
 void	ft_lstadd_back(l_list **lst, l_list *new);
-void	ft_lstdelfirst(l_list **lst);
+
+l_list	**ft_lstdelfirst(l_list **lst);
+//void	ft_lstdelfirst(l_list **lst);
+
 void	ft_lstclear(l_list **lst);
 void	ft_putlst_fd(l_list **lst, int fd);
 

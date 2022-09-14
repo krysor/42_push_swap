@@ -23,4 +23,5 @@ void	ft_putlst_fd(l_list **lst, int fd)
 		*lst = (*lst)->next;
 	}
 	last_node->next = first_node;
+	*lst = first_node;
 }

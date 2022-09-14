@@ -8,6 +8,7 @@ int	main(void)
 	//int		i;
 
 
+	/*
 	//empty list check
 	lst = NULL;
 	printf("Zero elements checks:\n");
@@ -35,33 +36,33 @@ int	main(void)
 	printf("		size = %d\n", ft_lstsize(lst));
 	printf("		Passed\n");
 
-	//test add back: with both delfirst and lstclear
 	lst = NULL;
 	printf("	ft_lstnew and ft_lstadd_back\n");
 	ft_lstadd_back(lst, ft_lstnew(0));
-	printf("		size after adding 1 element at the end of an empty list = %d\n", ft_lstsize(lst));
+	printf("		size after ft_lstadd_back: %d\n", ft_lstsize(lst));
 	ft_putlst_fd(lst, 1);
 	ft_lstdelfirst(lst);
-	printf("		size after removing 1 element from the list = %d\n", ft_lstsize(lst));
+	printf("		size after ft_lstdelfirst: %d\n", ft_lstsize(lst));
 	ft_putlst_fd(lst, 1);
 	ft_lstadd_back(lst, ft_lstnew(0));
-	printf("		size after adding 1 element at the end of an empty list = %d\n", ft_lstsize(lst));
+	printf("		size after ft_lstadd_back: %d\n", ft_lstsize(lst));
 	ft_lstclear(lst);
-	printf("		size after clearing the list = %d\n", ft_lstsize(lst));
+	printf("		size after ft_lstclear: %d\n", ft_lstsize(lst));
+	printf("		Passed if size 0 everywhere\n");
 
-	//test add front: with both delfirst and lstclear
-		lst = NULL;
+	lst = NULL;
 	printf("	ft_lstnew and ft_lstadd_front\n");
 	ft_lstadd_front(lst, ft_lstnew(0));
-	printf("		size after adding 1 element to empty list = %d\n", ft_lstsize(lst));
+	printf("		size after ft_lstadd_front: %d\n", ft_lstsize(lst));
 	ft_putlst_fd(lst, 1);
 	ft_lstdelfirst(lst);
-	printf("		size after removing 1 element from the list = %d\n", ft_lstsize(lst));
+	printf("		size after ft_lstdelfirst: %d\n", ft_lstsize(lst));
 	ft_putlst_fd(lst, 1);
 	ft_lstadd_front(lst, ft_lstnew(0));
-	printf("		size after adding 1 element to empty list = %d\n", ft_lstsize(lst));
+	printf("		size after ft_lstadd_front: %d\n", ft_lstsize(lst));
 	ft_lstclear(lst);
-	printf("		size after clearing the list = %d\n", ft_lstsize(lst));
+	printf("		size after ft_lstclear: %d\n", ft_lstsize(lst));
+	printf("		Passed if size 0 everywhere\n");
 
 
 	//single element list check
@@ -78,7 +79,8 @@ int	main(void)
 
 	printf("	ft_lstdelfirst\n");
 	ft_lstdelfirst(lst);
-	printf("	do i fail here1\n");
+	ft_putlst_fd(lst, 1);
+	ft_lstdelfirst(lst);//second time to check if crashes
 	ft_putlst_fd(lst, 1);
 	printf("		Passed\n");
 
@@ -87,7 +89,10 @@ int	main(void)
 	printf("	ft_lstclear\n");
 	ft_lstclear(lst);
 	ft_putlst_fd(lst, 1);
+	ft_lstclear(lst);
+	ft_putlst_fd(lst, 1);
 	printf("		Passed\n");
+*/
 
 	node = ft_lstnew(0);
 	lst = &node;
@@ -98,15 +103,37 @@ int	main(void)
 
 	printf("	ft_lstsize\n");
 	printf("		size = %d\n", ft_lstsize(lst));
-	printf("		Passed\n");
+	printf("		Passed if size = 1\n");
 
-	//test extra functions for size 1
-	//test add front
+	//all the tests for size 2
+		printf("Double element checks:\n");
+	
 	printf("	ft_lstadd_back\n");
+	ft_lstadd_back(lst, ft_lstnew(1));
+	ft_putlst_fd(lst, 1);
+	printf("		Passed if 0 and 1 printed\n");
+
+	printf("	ft_lstdelfirst\n");
+	//ft_lstdelfirst(lst);
+	lst = ft_lstdelfirst(lst);
+	ft_putlst_fd(lst, 1);
+	printf("		Passed if only 1 printed before this\n");
+	printf("		size after first ft_lstdelfirst: %d\n", ft_lstsize(lst));
+	//ft_lstdelfirst(lst);
+	lst = ft_lstdelfirst(lst);
+	ft_putlst_fd(lst, 1);
+	printf("		Passed if nothing printed before this\n");
+	printf("		size after second ft_lstdelfirst: %d\n", ft_lstsize(lst));
+
+	/*
+	printf("	ft_lstclear\n");
 	node = ft_lstnew(0);
 	lst = &node;
-	printf("		size before add back = %d\n", ft_lstsize(lst));
-	//test add back
-
+	ft_lstadd_back(lst, ft_lstnew(1));
+	ft_putlst_fd(lst, 1);
+	ft_lstclear(lst);
+	ft_putlst_fd(lst, 1);
+	printf("		Passed if 0 1 only printed once\n");
 	//all the tests for size n
+	*/
 }

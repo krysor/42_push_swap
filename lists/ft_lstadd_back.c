@@ -4,10 +4,7 @@
 void	ft_lstadd_back(l_list **lst, l_list *new)
 {
 	if (lst == NULL)
-	{
-		lst = &new;
 		return ;
-	}
 	if (*lst == NULL)
 	{
 		*lst = new;

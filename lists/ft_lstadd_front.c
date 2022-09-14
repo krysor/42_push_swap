@@ -2,9 +2,9 @@
 
 void	ft_lstadd_front(l_list **lst, l_list *new)
 {
-	if (new == NULL)
+	if (new == NULL || lst == NULL)
 		return ;
-	if (lst != NULL && *lst != NULL)
+	if (*lst != NULL)
 	{
 		if ((*lst)->next == NULL)
 		{
