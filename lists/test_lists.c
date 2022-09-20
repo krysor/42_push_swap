@@ -8,7 +8,6 @@ int	main(void)
 	//int		i;
 
 
-	/*
 	//empty list check
 	lst = NULL;
 	printf("Zero elements checks:\n");
@@ -92,7 +91,6 @@ int	main(void)
 	ft_lstclear(lst);
 	ft_putlst_fd(lst, 1);
 	printf("		Passed\n");
-*/
 
 	node = ft_lstnew(0);
 	lst = &node;
@@ -106,34 +104,130 @@ int	main(void)
 	printf("		Passed if size = 1\n");
 
 	//all the tests for size 2
-		printf("Double element checks:\n");
+	printf("Double element checks:\n");
 	
 	printf("	ft_lstadd_back\n");
 	ft_lstadd_back(lst, ft_lstnew(1));
 	ft_putlst_fd(lst, 1);
 	printf("		Passed if 0 and 1 printed\n");
+	printf("	ft_lstsize\n");
+	printf("		size after ft_lstadd_back: %d\n", ft_lstsize(lst));
+	printf("		Passed if 2 printed\n");
+	printf("	ft_lstlast\n");
+	printf("		element of the list: %d\n", ft_lstlast(lst)->nb);
+	printf("		Passed if 1 printed\n");
 
 	printf("	ft_lstdelfirst\n");
-	//ft_lstdelfirst(lst);
-	lst = ft_lstdelfirst(lst);
+	ft_lstdelfirst(lst);
 	ft_putlst_fd(lst, 1);
 	printf("		Passed if only 1 printed before this\n");
+
 	printf("		size after first ft_lstdelfirst: %d\n", ft_lstsize(lst));
-	//ft_lstdelfirst(lst);
-	lst = ft_lstdelfirst(lst);
+	ft_lstdelfirst(lst);
 	ft_putlst_fd(lst, 1);
 	printf("		Passed if nothing printed before this\n");
 	printf("		size after second ft_lstdelfirst: %d\n", ft_lstsize(lst));
 
-	/*
 	printf("	ft_lstclear\n");
 	node = ft_lstnew(0);
 	lst = &node;
 	ft_lstadd_back(lst, ft_lstnew(1));
+	printf("		Passed if 0 1 printed after this\n");
 	ft_putlst_fd(lst, 1);
 	ft_lstclear(lst);
+	printf("		Passed if nothing printed after this\n");
 	ft_putlst_fd(lst, 1);
-	printf("		Passed if 0 1 only printed once\n");
+	
+	//test add front
+	node = ft_lstnew(0);
+	lst = &node;
+	
+	printf("	ft_lstadd_front\n");
+	ft_lstadd_front(lst, ft_lstnew(-1));
+	ft_putlst_fd(lst, 1);
+	printf("		Passed if -1 0 printed\n");
+	printf("	ft_lstsize\n");
+	printf("		size after ft_lstadd_front: %d\n", ft_lstsize(lst));
+	printf("		Passed if 2 printed\n");
+	printf("	ft_lstlast\n");
+	printf("		element of the list: %d\n", ft_lstlast(lst)->nb);
+	printf("		Passed if 0 printed\n");
+
+	printf("	ft_lstdelfirst\n");
+	ft_lstdelfirst(lst);
+	ft_putlst_fd(lst, 1);
+	printf("		Passed if only 0 printed before this\n");
+
+	printf("		size after first ft_lstdelfirst: %d\n", ft_lstsize(lst));
+	ft_lstdelfirst(lst);
+	ft_putlst_fd(lst, 1);
+	printf("		Passed if nothing printed before this\n");
+	printf("		size after second ft_lstdelfirst: %d\n", ft_lstsize(lst));
+
+	printf("	ft_lstclear\n");
+	node = ft_lstnew(0);
+	lst = &node;
+	ft_lstadd_front(lst, ft_lstnew(-1));
+	printf("		Passed if -1 0 printed after this\n");
+	ft_putlst_fd(lst, 1);
+	ft_lstclear(lst);
+	printf("		Passed if nothing printed after this\n");
+	ft_putlst_fd(lst, 1);
+
 	//all the tests for size n
-	*/
+	printf("N element checks:\n");
+	node = ft_lstnew(0);
+	lst = &node;
+	ft_lstadd_back(lst, ft_lstnew(1));
+	ft_lstadd_front(lst, ft_lstnew(-1));
+	ft_lstadd_back(lst, ft_lstnew(2));
+	ft_lstadd_front(lst, ft_lstnew(-2));
+
+	ft_putlst_fd(lst, 1);
+	printf("		Passed if -2 -1 0 1 2 printed\n");
+	printf("	ft_lstsize\n");
+	printf("		size: %d\n", ft_lstsize(lst));
+	printf("		Passed if 5 printed\n");
+	printf("	ft_lstlast\n");
+	printf("		element of the list: %d\n", ft_lstlast(lst)->nb);
+	printf("		Passed if 2 printed\n");
+
+	printf("	ft_lstdelfirst\n");
+	ft_lstdelfirst(lst);
+	ft_putlst_fd(lst, 1);
+	printf("		Passed if only -1 0 1 2 printed before this\n");
+
+	printf("		size after first ft_lstdelfirst: %d\n", ft_lstsize(lst));
+	printf("		Passed if 4 printed\n");
+
+	ft_lstdelfirst(lst);
+	ft_lstdelfirst(lst);
+	ft_lstdelfirst(lst);
+	ft_lstdelfirst(lst);
+	ft_putlst_fd(lst, 1);
+	printf("		Passed if nothing printed before this\n");
+	printf("		size after 4 more ft_lstdelfirst: %d\n", ft_lstsize(lst));
+	printf("		Passed if 0 printed before this\n");
+
+	node = ft_lstnew(0);
+	lst = &node;
+	ft_lstadd_back(lst, ft_lstnew(1));
+	ft_lstadd_front(lst, ft_lstnew(-1));
+	ft_lstadd_back(lst, ft_lstnew(2));
+	ft_lstadd_front(lst, ft_lstnew(-2));
+	ft_putlst_fd(lst, 1);
+	printf("		-2 -1 0 1 2 should be printed before this\n");
+
+	printf("	ft_lstsize\n");
+	printf("		size: %d\n", ft_lstsize(lst));
+	printf("		Passed if 5 printed\n");
+
+	printf("	ft_lstclear\n");
+	ft_lstclear(lst);
+	printf("		Passed if nothing printed after this\n");
+	ft_putlst_fd(lst, 1);
+
+	printf("	ft_lstsize\n");
+	printf("		size: %d\n", ft_lstsize(lst));
+	printf("		Passed if 0 printed\n");
 }
