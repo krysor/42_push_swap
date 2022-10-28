@@ -11,18 +11,22 @@ int main(int argc, char *argv[])
 		return (-1);
 	}
 	input = ft_parse(argc, argv);
+	/*
 	if (input == NULL)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (-1);
 	}
+	*/
 	//result = ft_solve(input);		
-	//if result == NULL
-	//{		
-	///		FREE inputs
-	//		ft_putstr_fd("Error\n", 2);
-	//		return (-1);
-	//}
+	/*
+	if result == NULL
+	{		
+		FREE input
+		ft_putstr_fd("Error\n", 2);
+		return (-1);
+	}
+	*/
 	//print result
 	//FREE input (with clear lst function)
 	//FREE result (with whatever applicable)
@@ -39,11 +43,15 @@ t_list **ft_parse(int argc, char *argv[])
     {
         arr = ft_split(argv[1], ' ');
         if (arr == NULL || *arr == NULL)
-			return (NULL);
+			//return (NULL);
+		{
+			ft_putstr_fd("Error\n", 2);
+			exit(-1);
+		}
     }
 	else
 		arr = argv + 1;
-	ft_putarr_fd(arr, 1);
+	ft_putarr_fd(arr, 1);//delete at the end
 	lst = ft_atolst(arr);
 	if (argc == 2)
 		ft_freearr(arr);
