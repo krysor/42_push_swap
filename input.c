@@ -1,52 +1,39 @@
 #include "push_swap.h"
 
-l_list **ft_parse(int argc, char *argv[]);
-l_list **ft_lst_init(char **arr);
-l_list **ft_lst_make(char **arr, l_list **lst);
-l_list **ft_dup_check(l_list **lst);
-void ft_freearr(char **arr);
-void ft_putarr_fd(char **arr, int fd);
-void ft_putpnt_fd(void *pnt);
-
-
 int main(int argc, char *argv[])
 {
-    l_list	**inputs;
+    t_list	**input;
 	//char	**result;
 
 	if (argc <= 1)
     {
-	    ft_putstr_fd("Error\n", 1);
+	    ft_putstr_fd("Error\n", 2);
 		return (-1);
 	}
-    else if (argc >= 2)
-    {
-		inputs = ft_parse(argc, argv);
-		if (inputs == NULL)
-		{
-			ft_putstr_fd("Error\n", 1);
-			return (-1);
-		}
-
-		//printer function to test the inputs
-		//ft_putstr_fd("start of lstiter\n", 1);
-		//ft_putlst_fd(inputs, 1);
-		//ft_putstr_fd("end of lstiter\n", 1);
-
-		//call the solver function
-		//result = ft_solve(inputs);
-		//if result != NULL
-		// 	 print (result)
-		//FREE inputs (with clear lst function)
-		//FREE result (with whatever applicable)
+	input = ft_parse(argc, argv);
+	if (input == NULL)
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (-1);
 	}
+	//result = ft_solve(input);		
+	//if result == NULL
+	//{		
+	///		FREE inputs
+	//		ft_putstr_fd("Error\n", 2);
+	//		return (-1);
+	//}
+	//print result
+	//FREE input (with clear lst function)
+	//FREE result (with whatever applicable)
     return (1);
 }
 
-l_list **ft_parse(int argc, char *argv[])
+
+t_list **ft_parse(int argc, char *argv[])
 {
-	l_list	**lst;
-	char 	**arr;
+	char	**arr;
+	t_list	**lst;
 
 	if (argc == 2)
     {
@@ -55,13 +42,21 @@ l_list **ft_parse(int argc, char *argv[])
 			return (NULL);
     }
 	else
-		arr = argv + 1;	
-	lst = ft_lst_init(arr);
+		arr = argv + 1;
+	ft_putarr_fd(arr, 1);
+	lst = ft_atolst(arr);
 	if (argc == 2)
 		ft_freearr(arr);
 	return (lst);
 }
 
+t_list	**ft_atolst(char **arr)
+{
+	(void)arr;
+	return (NULL);
+}
+
+/*
 l_list **ft_lst_init(char **arr)
 {
 	long int	li;
@@ -77,7 +72,8 @@ l_list **ft_lst_init(char **arr)
 	printf("ft_lst_init just before return\n");
 	return (ft_lst_make(arr, &lst));
 }
-
+*/
+/*
 l_list **ft_lst_make(char **arr, l_list **lst)
 {
 	long int	li;
@@ -109,7 +105,8 @@ l_list **ft_lst_make(char **arr, l_list **lst)
 		return (lst);
 	return (ft_dup_check(lst));
 }
-
+*/
+/*
 l_list **ft_dup_check(l_list **lst)
 {
 	l_list	*current;
@@ -134,6 +131,7 @@ l_list **ft_dup_check(l_list **lst)
 	}
 	return (lst);
 }
+*/
 
 void ft_freearr(char **arr)
 {
@@ -146,7 +144,6 @@ void ft_freearr(char **arr)
 		free(arr[i--]);
 	free(arr);
 }
-
 		/*
 		lst = ft_arrtol(inputs);
 		if (lst == NULL)
@@ -155,7 +152,6 @@ void ft_freearr(char **arr)
 			exit ();
 		}
 		*/
-
 
 void ft_putarr_fd(char **arr, int fd)//delete at the end
 {
