@@ -1,5 +1,10 @@
 #include "push_swap.h"
 
+static	t_list	**ft_parse(int argc, char *argv[]);
+static	t_list	**ft_atolst(char **arr);
+static	void ft_freearr(char **arr);
+static	void ft_putarr_fd(char **arr, int fd);
+
 int main(int argc, char *argv[])
 {
     t_list	**input;
@@ -11,7 +16,8 @@ int main(int argc, char *argv[])
 		return (-1);
 	}
 	input = ft_parse(argc, argv);
-	/*
+	(void)input;
+	/*	
 	if (input == NULL)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -51,17 +57,37 @@ t_list **ft_parse(int argc, char *argv[])
     }
 	else
 		arr = argv + 1;
-	ft_putarr_fd(arr, 1);//delete at the end
+	ft_putarr_fd(arr, 1);//DELETE AT THE END
 	lst = ft_atolst(arr);
 	if (argc == 2)
 		ft_freearr(arr);
 	return (lst);
 }
 
+//finish, check whole function if correct (even before testing) and test
 t_list	**ft_atolst(char **arr)
 {
-	(void)arr;
-	return (NULL);
+	int			i;
+	t_list		**lst;
+	t_list		*node;
+	void		*content;
+
+	i = 0;
+	lst = &node;
+	while (arr[i] != NULL)
+	{	
+		content = ft_atopi(arr[i]);
+		node = ft_lstnew(content);
+		ft_lstadd_back(lst, node);
+		if (content == NULL || node == NULL)
+		{
+			ft_freearr(arr);
+			ft_lstclear(lst, (void *)free);
+			ft_putstr_fd("Error\n", 2);
+			exit (-1);
+		}
+	}
+	//return (lst);
 }
 
 /*

@@ -18,13 +18,9 @@
 
 #include <stdio.h>
 
-long int	ft_atol(const char *nptr);
+void	*ft_atopi(char *str);
+//long int	ft_atolong(const char *nptr);
 
-
-t_list	**ft_parse(int argc, char *argv[]);
-t_list	**ft_atolst(char **arr);
-void ft_freearr(char **arr);
-void ft_putarr_fd(char **arr, int fd);
 /*
 l_list **ft_lst_init(char **arr);
 l_list **ft_lst_make(char **arr, l_list **lst);

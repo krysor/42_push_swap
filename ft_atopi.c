@@ -2,8 +2,24 @@
 
 static int	ft_isspace(char chr);
 static int	ft_nbdigit(char *s);
+static long int	ft_atolong(const char *nptr);
 
-long int	ft_atolong(const char *nptr)
+void	*ft_atopi(char *str)
+{
+	long int	nb;
+	int			*content;
+	
+	nb = ft_atolong(str);
+	if (nb == LONG_MIN)
+		return (NULL);
+	content = malloc(sizeof(int));
+	if (content = NULL)
+		return (NULL);
+	*content = (int)nb;
+	return ((void *)content);//test this
+}
+
+static long int	ft_atolong(const char *nptr)
 {
 	long int	nb;
 	int			sign;
@@ -51,4 +67,3 @@ static int	ft_nbdigit(char *s)
 	}	
 	return (nb);
 }
-
