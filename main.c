@@ -1,9 +1,11 @@
 #include "push_swap.h"
 
-static	t_list	**ft_parse(int argc, char *argv[]);
-static	t_list	**ft_atolst(char **arr);
-static	void ft_freearr(char **arr);
-static	void ft_putarr_fd(char **arr, int fd);
+static t_list	**ft_parse(int argc, char *argv[]);
+static t_list	**ft_atolst(char **arr);
+static void		ft_freearr(char **arr);
+static void		ft_putarr_fd(char **arr, int fd);
+static void		ft_putlst_fd(t_list **lst, int fd);
+static void		ft_putcontent_fd(void *content, int fd);
 
 int main(int argc, char *argv[])
 {
@@ -16,7 +18,7 @@ int main(int argc, char *argv[])
 		return (-1);
 	}
 	input = ft_parse(argc, argv);
-	(void)input;
+	ft_putlst_fd(input, 1);
 	/*	
 	if (input == NULL)
 	{
@@ -35,12 +37,13 @@ int main(int argc, char *argv[])
 	*/
 	//print result
 	//FREE input (with clear lst function)
+	ft_lstclear(input, (void *)free);
 	//FREE result (with whatever applicable)
     return (1);
 }
 
 
-t_list **ft_parse(int argc, char *argv[])
+static t_list	**ft_parse(int argc, char *argv[])
 {
 	char	**arr;
 	t_list	**lst;
@@ -64,8 +67,7 @@ t_list **ft_parse(int argc, char *argv[])
 	return (lst);
 }
 
-//finish, check whole function if correct (even before testing) and test
-t_list	**ft_atolst(char **arr)
+static t_list	**ft_atolst(char **arr)
 {
 	int			i;
 	t_list		**lst;
@@ -79,7 +81,7 @@ t_list	**ft_atolst(char **arr)
 		content = ft_atopi(arr[i]);
 		node = ft_lstnew(content);
 		ft_lstadd_back(lst, node);
-		if (content == NULL || node == NULL)
+		if (content == NULL || node == NULL || ft_isdup(lst))
 		{
 			ft_freearr(arr);
 			ft_lstclear(lst, (void *)free);
@@ -87,7 +89,7 @@ t_list	**ft_atolst(char **arr)
 			exit (-1);
 		}
 	}
-	//return (lst);
+	return (lst);
 }
 
 /*
@@ -167,7 +169,7 @@ l_list **ft_dup_check(l_list **lst)
 }
 */
 
-void ft_freearr(char **arr)
+static void	ft_freearr(char **arr)
 {
 	int	i;
 
@@ -187,7 +189,7 @@ void ft_freearr(char **arr)
 		}
 		*/
 
-void ft_putarr_fd(char **arr, int fd)//delete at the end
+static void	ft_putarr_fd(char **arr, int fd)//delete at the end
 {
 	int	i;
 	
@@ -200,15 +202,18 @@ void ft_putarr_fd(char **arr, int fd)//delete at the end
 	}
 }
 
-/*
-void ft_putlst_fd(l_list **lst)//delete at the end
+static void	ft_putlst_fd(t_list **lst, int fd)
 {	
-	ft_putstr_fd("putpnt start:\n", 1);
-	printf("%d", *(int *)pnt);
-	//ft_putstr_fd(ft_itoa(*(int *)pnt), 1);
-	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("putlst start\n", fd);
+	ft_lstiter(lst, (void *)ft_putcontent_fd);
+	ft_putstr_fd("putlst end\n", fd);
 }
-*/
+
+static void	ft_putcontent_fd(void *content, int fd)
+{
+	ft_putnbr_fd(*(int *)content, fd);
+}
+
 /*
 t_list	**ft_arrtol(char **inputs)
 {

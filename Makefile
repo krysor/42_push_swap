@@ -1,4 +1,4 @@
-SRCS	= input.c ft_atopi.c
+SRCS	= main.c ft_atopi.c
 
 OBJS	= ${SRCS:.c=.o}
 

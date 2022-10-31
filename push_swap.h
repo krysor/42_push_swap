@@ -19,6 +19,7 @@
 #include <stdio.h>
 
 void	*ft_atopi(char *str);
+int		ft_isdup(t_list **lst);
 //long int	ft_atolong(const char *nptr);
 
 /*
