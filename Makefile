@@ -1,4 +1,4 @@
-SRCS	= main.c ft_atopi.c
+SRCS	= main.c ft_atopi.c ft_isdup.c
 
 OBJS	= ${SRCS:.c=.o}
 
