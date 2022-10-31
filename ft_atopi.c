@@ -13,7 +13,7 @@ void	*ft_atopi(char *str)
 	if (nb == LONG_MIN)
 		return (NULL);
 	content = malloc(sizeof(int));
-	if (content = NULL)
+	if (content == NULL)
 		return (NULL);
 	*content = (int)nb;
 	return ((void *)content);//test this

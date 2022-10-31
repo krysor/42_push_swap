@@ -205,7 +205,7 @@ static void	ft_putarr_fd(char **arr, int fd)//delete at the end
 static void	ft_putlst_fd(t_list **lst, int fd)
 {	
 	ft_putstr_fd("putlst start\n", fd);
-	ft_lstiter(lst, (void *)ft_putcontent_fd);
+	ft_lstiter(*lst, (void *)ft_putcontent_fd);
 	ft_putstr_fd("putlst end\n", fd);
 }
 
