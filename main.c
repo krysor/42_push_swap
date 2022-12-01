@@ -58,9 +58,9 @@ static t_list	**ft_parse(int argc, char *argv[])
     }
 	else
 		arr = argv + 1;
-	printf("arr start:");
+	printf("arr start:\n");
 	ft_putarr_fd(arr, 1);//DELETE AT THE END
-	printf("arr end;");
+	printf("arr end;\n");
 	lst = ft_atolst(arr, argc);
 	ft_putlst_fd(lst, 1);//DELETE AT THE END
 	if (argc == 2)
@@ -180,26 +180,14 @@ static void	ft_freearr(char **arr)
 	int	i;
 
 	i = 0;
-	if (arr == NULL)
+	if (arr == NULL || *arr == NULL)
 		return;
-	printf("here3?\n");
 	while (arr[i] != NULL)
 		i++;
-	printf("here4?\n");
-	//i--;
 	while (i >= 0)
 		free(arr[i--]);
-	printf("here5?\n");
-	//free(arr);
+	free(arr);
 }
-		/*
-		lst = ft_arrtol(inputs);
-		if (lst == NULL)
-		{
-			ft_putstr_fd("Error\n", 1);
-			exit ();
-		}
-		*/
 
 static void	ft_putarr_fd(char **arr, int fd)//delete at the end
 {
@@ -221,39 +209,8 @@ static void	ft_putlst_fd(t_list **lst, int fd)
 	ft_putstr_fd("putlst end;\n", fd);
 }
 
-//static void	ft_putcontent_fd(void *content, int fd)
 static void	ft_putcontent_fd(void *content)
 {
 	ft_putnbr_fd(*(int *)content, 1);
 	ft_putchar_fd('\n', 1);
 }
-
-/*
-t_list	**ft_arrtol(char **inputs)
-{
-	t_list	*lst;
-	int		content;
-
-	if (ft_content == NULL)
-		return (NULL);
-	
-	//get content candidate with modified atoi: think about return value in case of incorrect outcome + free everything else
-	lst = ft_lstnew(content);//some atoi variation inside + put whole process in a loop
-	
-	
-	
-	return (&lst);
-}
-*/
-
-//checks to perform on the input
-//1. is it a properly formatted number: array to long long int / if not an int, return max or min long long int valeu
-//2. is it an integer: / is it smaller than max int and larger than min int
-//3. are there multiple occurences / iterate over the list for each element from left to right
-
-/*
-input/outputs
-1. char array / u int array
-2. u int array / int array
-3. int array / int array
-*/
