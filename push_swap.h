@@ -16,17 +16,9 @@
 # include "libft/libft.h" 
 # include <limits.h>
 
-#include <stdio.h>
+#include <stdio.h>//delete at the end
 
 void	*ft_atopi(char *str);
 int		ft_isdup(t_list **lst);
-//long int	ft_atolong(const char *nptr);
-
-/*
-l_list **ft_lst_init(char **arr);
-l_list **ft_lst_make(char **arr, l_list **lst);
-l_list **ft_dup_check(l_list **lst);
-void ft_putpnt_fd(void *pnt);
-*/
 
 #endif

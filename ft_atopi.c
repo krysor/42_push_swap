@@ -16,7 +16,7 @@ void	*ft_atopi(char *str)
 	if (content == NULL)
 		return (NULL);
 	*content = (int)nb;
-	return ((void *)content);//test this
+	return ((void *)content);
 }
 
 static long int	ft_atolong(const char *nptr)
