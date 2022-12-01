@@ -98,83 +98,6 @@ static t_list	**ft_atolst(char **arr, int	argc)
 	return (lst);
 }
 
-/*
-l_list **ft_lst_init(char **arr)
-{
-	long int	li;
-	l_list		*lst;
-
-	li = ft_atol(arr[0]);
-	if (li == LONG_MIN)
-		return (NULL);
-	//printf("first elem: %li\n", li);
-	lst = ft_lstnew((int)li);
-	if (lst == NULL)
-		return (NULL);
-	printf("ft_lst_init just before return\n");
-	return (ft_lst_make(arr, &lst));
-}
-*/
-/*
-l_list **ft_lst_make(char **arr, l_list **lst)
-{
-	long int	li;
-	l_list		*temp;
-	int			i;
-
-	i = 1;
-	printf("ft_lst_make at the top\n");
-	while (arr[i] != NULL)
-	{
-		//printf("before seg or no\n");
-		li = ft_atol(arr[i]);
-		if (li == LONG_MIN)
-		{
-			ft_lstclear(lst);
-			break ;
-		}
-		temp = ft_lstnew((int)li);
-		if (temp == NULL)
-		{
-			ft_lstclear(lst);
-			break ;
-		}
-		ft_lstadd_back(lst, temp);
-		i++;
-	}
-	printf("before seg or no 1\n");
-	if ((*lst)->next == NULL)
-		return (lst);
-	return (ft_dup_check(lst));
-}
-*/
-/*
-l_list **ft_dup_check(l_list **lst)
-{
-	l_list	*current;
-	l_list	*temp;
-	
-	printf("hi!\n");
-	current = *lst;
-	temp = current->next;
-	while (temp != NULL)
-	{
-		while (temp != NULL)
-		{
-			if (current->nb == temp->nb)
-			{
-				ft_lstclear(lst);
-				return (NULL);
-			}
-			temp = temp->next;
-		}
-		current = current->next;
-		temp = current->next;
-	}
-	return (lst);
-}
-*/
-
 static void	ft_freearr(char **arr)
 {
 	int	i;
@@ -202,14 +125,14 @@ static void	ft_putarr_fd(char **arr, int fd)//delete at the end
 	}
 }
 
-static void	ft_putlst_fd(t_list **lst, int fd)
+static void	ft_putlst_fd(t_list **lst, int fd)//delete at the end
 {	
 	ft_putstr_fd("putlst start:\n", fd);
 	ft_lstiter(*lst, (void *)ft_putcontent_fd);
 	ft_putstr_fd("putlst end;\n", fd);
 }
 
-static void	ft_putcontent_fd(void *content)
+static void	ft_putcontent_fd(void *content)//delete at the end
 {
 	ft_putnbr_fd(*(int *)content, 1);
 	ft_putchar_fd('\n', 1);
