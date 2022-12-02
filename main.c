@@ -68,6 +68,119 @@ static t_list	**ft_parse(int argc, char *argv[])
 	return (lst);
 }
 
+//THIS ONE SHOULD PROTECT MALLOC
+static t_list	**ft_atolst(char **arr, int	argc)
+{
+	int			i;
+	t_list		**lst;
+
+	i = 0;
+	lst = (t_list **)malloc(sizeof(t_list *));//protect this malloc!!!
+	if (lst != NULL)//protection requried here
+		*lst = NULL;//protection requried here
+	while (arr[i] != NULL)//simplify the list initiation
+	{	
+		if (lst != NULL)//protection requried here
+			ft_lstadd_back(lst, ft_lstnew(ft_atopi(arr[i])));//!!!!is pi freed if atopi fails?!!!!!
+		if (lst == NULL || ft_lstlast(*lst) == NULL ||//protection requried here
+			ft_lstlast(*lst)->content == NULL || ft_isdup(lst))
+		{
+			if (argc == 2)
+				ft_freearr(arr);
+			ft_lstclear(lst, (void *)free);
+			ft_putstr_fd("Error\n", 2);
+			exit(-1);
+		}
+		i++;
+	}
+	return (lst);
+}
+
+/*
+//THIS ONE DOES NOT USE NODE VARIABLE
+static t_list	**ft_atolst(char **arr, int	argc)
+{
+	int			i;
+	t_list		**lst;
+
+	i = 0;
+	lst = (t_list **)malloc(sizeof(t_list *));//protect this malloc!!!
+	*lst = NULL;
+	while (arr[i] != NULL)//simplify the list initiation
+	{	
+		ft_lstadd_back(lst, ft_lstnew(ft_atopi(arr[i])));
+		if (ft_lstlast(*lst) == NULL || 
+			ft_lstlast(*lst)->content == NULL || ft_isdup(lst))
+		{
+			if (argc == 2)
+				ft_freearr(arr);
+			ft_lstclear(lst, (void *)free);
+			ft_putstr_fd("Error\n", 2);
+			exit(-1);
+		}
+		i++;
+	}
+	return (lst);
+}*/
+
+/*
+//THIS ONE HAS NO FIRST NODE CASE
+static t_list	**ft_atolst(char **arr, int	argc)
+{
+	int			i;
+	t_list		**lst;
+	t_list		*node;
+
+	i = 0;
+	lst = (t_list **)malloc(sizeof(t_list *));//protect this malloc!!!
+	*lst = NULL;
+	while (arr[i] != NULL)//simplify the list initiation
+	{	
+		node = ft_lstnew(ft_atopi(arr[i]));
+		ft_lstadd_back(lst, node);
+		if (node->content == NULL || node == NULL || ft_isdup(lst))
+		{
+			if (argc == 2)
+				ft_freearr(arr);
+			ft_lstclear(lst, (void *)free);
+			ft_putstr_fd("Error\n", 2);
+			exit(-1);
+		}
+		i++;
+	}
+	return (lst);
+}*/
+
+/*THIS ONE DOESNT USE CONTENT VAR
+static t_list	**ft_atolst(char **arr, int	argc)
+{
+	int			i;
+	t_list		**lst;
+	t_list		*node;
+
+	i = 0;
+	lst = (t_list **)malloc(sizeof(t_list *));
+	while (arr[i] != NULL)//simplify the list initiation
+	{	
+		node = ft_lstnew(ft_atopi(arr[i]));
+		if (i == 0 && lst != NULL)
+			*lst = node;
+		if (i != 0)
+			ft_lstadd_back(lst, node);
+		if (node->content == NULL || node == NULL || ft_isdup(lst))
+		{
+			if (argc == 2)
+				ft_freearr(arr);
+			ft_lstclear(lst, (void *)free);
+			ft_putstr_fd("Error\n", 2);
+			exit(-1);
+		}
+		i++;
+	}
+	return (lst);
+}
+*/
+/*
 static t_list	**ft_atolst(char **arr, int	argc)
 {
 	int			i;
@@ -97,6 +210,7 @@ static t_list	**ft_atolst(char **arr, int	argc)
 	}
 	return (lst);
 }
+*/
 
 static void	ft_freearr(char **arr)
 {
