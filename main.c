@@ -69,6 +69,8 @@ static t_list	**ft_parse(int argc, char *argv[])
 }
 
 //THIS ONE SHOULD PROTECT MALLOC
+
+//consider splitting  the second if condition in while loop AND the free piece in 2 extra functions
 static t_list	**ft_atolst(char **arr, int	argc)
 {
 	int			i;
