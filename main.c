@@ -2,8 +2,8 @@
 
 static t_list	**ft_parse(int argc, char *argv[]);
 static t_list	**ft_atolst(char **arr, int	argc);
-void			ft_atolst_exit(char **arr, int	argc, t_list **lst);
-int				ft_atolst_iserr(t_list **lst);
+void			ft_atolst_exit(char **arr, int	argc, t_list **lst, void *content);
+int				ft_atolst_iserr(t_list **lst, int i);
 static void		ft_freearr(char **arr);
 static void		ft_putarr_fd(char **arr, int fd);
 static void		ft_putlst_fd(t_list **lst, int fd);
@@ -70,11 +70,36 @@ static t_list	**ft_parse(int argc, char *argv[])
 	return (lst);
 }
 
-//THIS ONE SHOULD PROTECT MALLOC
+//THIS ONE and atlst_iserr need some modifications
 static t_list	**ft_atolst(char **arr, int	argc)
 {
-	int			i;
-	t_list		**lst;
+	int		i;
+	t_list	**lst;
+	void	*content;
+
+	i = 0;
+	lst = (t_list **)malloc(sizeof(t_list *));
+	if (lst != NULL)
+		*lst = NULL;
+	while (arr[i] != NULL)
+	{	
+		if (lst != NULL)
+		{
+			content = ft_atopi(arr[i]);//extra check necessary in atlast_iserr
+			ft_lstadd_back(lst, ft_lstnew(content));//!!!!is pi freed if atopi fails?!!!!!
+		}
+		if (ft_atolst_iserr(lst, i))
+			ft_atolst_exit(arr, argc, lst, content);
+		i++;
+	}
+	return (lst);
+}
+/*
+//THIS ONE and atlst_iserr need some modifications
+static t_list	**ft_atolst(char **arr, int	argc)
+{
+	int		i;
+	t_list	**lst;
 
 	i = 0;
 	lst = (t_list **)malloc(sizeof(t_list *));
@@ -89,21 +114,28 @@ static t_list	**ft_atolst(char **arr, int	argc)
 		i++;
 	}
 	return (lst);
-}
+}*/
 
-int	ft_atolst_iserr(t_list **lst)
+int	ft_atolst_iserr(t_list **lst, int i)
 {
-	if (lst == NULL || ft_lstlast(*lst) == NULL
-		||ft_lstlast(*lst)->content == NULL || ft_isdup(lst))
+	/*if (lst == NULL || ft_lstlast(*lst) == NULL//deze is niet correct want lstaddback zal dit niet toelaten (met node variable was dit correct); instead possibly necessary to check if each loop step succesfully elongates the list*/
+	if (lst == NULL || ft_lstsize(*lst) != i + 1
+		|| ft_lstlast(*lst)->content == NULL || ft_isdup(lst))
 		return (1);
 	return (0);
 }
 
-void ft_atolst_exit(char **arr, int	argc, t_list **lst)
+void ft_atolst_exit(char **arr, int	argc, t_list **lst, void *content)
 {
 	if (argc == 2)
 		ft_freearr(arr);
+	printf("first %d\n", *(int *)ft_lstlast(*lst)->content);
+	printf("last %d\n", *(int *)content);
+	if (*(int *)(ft_lstlast(*lst)->content) != *(int *)content)
+		free(content);//dpuble free in case of 1 2 1 //seems to work now
+		
 	ft_lstclear(lst, (void *)free);
+	// THIS SHOULD ONLY FREE IF less elements in lst than i?
 	if (lst != NULL)
 		free(lst);
 	ft_putstr_fd("Error\n", 2);
