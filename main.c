@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
 	//print result
 	//FREE input (with clear lst function)
 	ft_lstclear(input, (void *)free);
+	free(input);
 	//FREE result (with whatever applicable)
     return (1);
 }
