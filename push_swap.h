@@ -18,6 +18,7 @@
 
 #include <stdio.h>//delete at the end
 
+t_list	**ft_parse(int argc, char *argv[]);
 void	*ft_atopi(char *str);
 int		ft_isdup(t_list **lst);
 
