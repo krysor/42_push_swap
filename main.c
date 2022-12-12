@@ -53,31 +53,33 @@ char	*ft_solve(t_list **a)
 	return ("unsorted\n");
 }
 
-t_list **ft_lst_double(t_list **lst)
+//guard lstdup for incorrect lst input
+//finish lstdouble, lstcat, 
+t_list **ft_lstdouble(t_list **lst)
 {
 	t_list	**lst1;
 	t_list	**lst2;
 
-	if (lst == NULL)
+	if (lst == NULL || *lst == NULL)
 		return (NULL);
-	{
-		free(lst);
-		ft_putstr_fd("Error\n", 2);
-		exit(-1);
-	}
 	lst1 = ft_lstdup(lst);
 	lst2 = ft_lstdup(lst);
-	lst1 = ft_lstcat(lst1, lst2);
-	//naaaaaah
-	return ();
+	if (lst3 == NULL)
+	{
+		ft_lstclear(lst1, (void *)free);
+		ft_lstclear(lst2, (void *)free);
+		return (NULL);
+	}
+	free(lst2);
+	return (lst1);
 }
 
 t_list **ft_lstcat(t_list **lst1, t_list **lst2)
 {
-	if (lst1 == NULL || lst2 == NULL)
+	if (lst1 == NULL || *lst1 == NULL
+		|| lst2 == NULL || *lst2 == NULL)
 		return (NULL);
 	ft_lstlast(*lst1)->next = *lst2;
-	free(lst2);
 	return (lst1);
 }
 
