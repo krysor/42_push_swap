@@ -76,8 +76,10 @@ static void ft_atolst_exit(char **arr, int	argc, t_list **lst, void *content)
 	
 	if (argc == 2)
 		ft_freearr(arr);
-	if (*(int *)(ft_lstlast(*lst)->content) != *(int *)content)
+	printf("before segfault\n");
+	if (content != NULL && *(int *)(ft_lstlast(*lst)->content) != *(int *)content)
 		free(content);
+	printf("after segfault\n");
 	if (lst != NULL)
 		p = 1;
 	ft_lstclear(lst, (void *)free);
