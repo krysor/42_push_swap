@@ -5,6 +5,12 @@ int		ft_issorted(t_list **lst);
 
 void 	*ft_contdup(void *content);
 t_list 	**ft_lstdup(t_list **lst);
+
+t_list	**ft_lstdouble(t_list **lst);
+void	ft_lstfullclear(t_list **lst);
+t_list **ft_lstcat(t_list **lst1, t_list **lst2);
+
+
 //DELETE AT THE END:
 static void		ft_putlst_fd(t_list **lst, int fd);
 static void		ft_putcontent_fd(void *content);
@@ -38,14 +44,11 @@ char	*ft_solve(t_list **a)
 	//else, do the magic
 
 	//this makes copy of a with second a after first a
-	t_list **clone1 = ft_lstdup(a);
-	t_list **clone2 = ft_lstdup(a);
-	ft_lstlast(*clone1)->next = *clone2;
-	free(clone2);
-	printf("printing clone1 after elongation: \n");
-	ft_putlst_fd(clone1, 1);
-	ft_lstclear(clone1, (void *)free);
-	free(clone1);
+	t_list **ring = ft_lstdouble(a);//add protection for NULL return in my final code
+	printf("printing ring: \n");
+	ft_putlst_fd(ring, 1);
+	ft_lstclear(ring, (void *)free);
+	free(ring);
 
 	//do the LIS stuff
 
@@ -53,8 +56,32 @@ char	*ft_solve(t_list **a)
 	return ("unsorted\n");
 }
 
-//guard lstdup for incorrect lst input
-//finish lstdouble, lstcat, 
+//function: get LIS from list (in circular fashion)
+//return value: 
+/*
+step 1: get all possible IS
+		create a LIST to store all possible IS
+			create a LIST to store the IS
+step 2: pick the IS that's the longest
+		iterate over LIST with all IS and store the one that's currently the longest
+step 3: if more than 1, pick the first one
+*/
+/*
+t_list **ft_lis(t_list **lst)
+{
+
+}
+
+t_list ***ft_allis(t_list **lst)
+{
+}
+
+t_list ***ft_is(t_list **lst)
+{
+	//this one should try each element after the current element as the next one AND all the elements before it
+}
+*/
+
 t_list **ft_lstdouble(t_list **lst)
 {
 	t_list	**lst1;
@@ -64,14 +91,27 @@ t_list **ft_lstdouble(t_list **lst)
 		return (NULL);
 	lst1 = ft_lstdup(lst);
 	lst2 = ft_lstdup(lst);
-	if (lst3 == NULL)
+	if (lst1 == NULL || lst2 == NULL)
 	{
-		ft_lstclear(lst1, (void *)free);
-		ft_lstclear(lst2, (void *)free);
+		ft_lstfullclear(lst1);
+		ft_lstfullclear(lst2);
 		return (NULL);
 	}
+	lst1 = ft_lstcat(lst1, lst2);
 	free(lst2);
 	return (lst1);
+}
+
+void ft_lstfullclear(t_list **lst)
+{
+	int p;
+	
+	p = 1;
+	if (lst == NULL)
+		p = 0;
+	ft_lstclear(lst, (void *)free);
+	if (p)
+		free (lst);
 }
 
 t_list **ft_lstcat(t_list **lst1, t_list **lst2)
@@ -99,41 +139,14 @@ int	ft_issorted(t_list **lst)
 	return (1);
 }
 
-//function: get LIS from list (in circular fashion)
-//return value: 
-/*
-step 1: get all possible IS
-		create a LIST to store all possible IS
-			create a LIST to store the IS
-step 2: pick the IS that's the longest
-		iterate over LIST with all IS and store the one that's currently the longest
-step 3: if more than 1, pick the first one
-*/
-/*
-t_list **ft_lis(t_list **lst)
-{
-
-}
-
-t_list ***ft_allis(t_list **lst)
-{
-	//COPY LST and put 2 after each other
-}
-
-t_list ***ft_is(t_list **lst)
-{
-	//this one should try each element after the current element as the next one AND all the elements before it
-
-}
-*/
-
-
 t_list **ft_lstdup(t_list **lst)
 {
 	t_list	**dup;
 	t_list	*temp;
 	void	*content;
 
+	if (lst == NULL || *lst == NULL)
+		return (NULL);
 	dup = (t_list **)malloc(sizeof(t_list *));
 	if (dup == NULL)
 		return (NULL);
@@ -159,6 +172,8 @@ void *ft_contdup(void *content)
 {
 	int	*dup;
 
+	if (content == NULL)
+		return (NULL);
 	dup = malloc(sizeof(content));
 	if (dup == NULL)
 		return (NULL);
