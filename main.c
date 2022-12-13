@@ -56,6 +56,39 @@ char	*ft_solve(t_list **a)
 	return ("unsorted\n");
 }
 
+/*
+////my idea to LIS
+//create a list of lists consisting of all the elements from my
+t_list **ft_allis(t_list **lst)
+{
+	t_list	**lstoflst;
+	t_list	*temp;
+	
+	//this one should try each element after the current element as the next one AND all the elements before it
+	if (lst == NULL || *lst == NULL)
+		return (NULL);
+	lstoflst = (t_list **)malloc(sizeof(t_list *));
+	if (lstoflst == NULL)
+		return (NULL);
+	temp = *lst;
+	while (temp)
+	{
+
+	}
+
+
+	//make a list just like every other
+	//as content store the first node of each list to store
+}
+*/
+//create a copy of my double list (using my function)
+//append all possible double element IS for first element in the list
+
+//repeat the same for all the others elements in the list
+//keep repeating untill the IS list stops growing
+//pick the longest list
+
+
 //function: get LIS from list (in circular fashion)
 //return value: 
 /*
@@ -65,22 +98,15 @@ step 1: get all possible IS
 step 2: pick the IS that's the longest
 		iterate over LIST with all IS and store the one that's currently the longest
 step 3: if more than 1, pick the first one
-*/
-/*
+
+
 t_list **ft_lis(t_list **lst)
 {
-
 }
 
 t_list ***ft_allis(t_list **lst)
 {
-}
-
-t_list ***ft_is(t_list **lst)
-{
-	//this one should try each element after the current element as the next one AND all the elements before it
-}
-*/
+}*/
 
 t_list **ft_lstdouble(t_list **lst)
 {
