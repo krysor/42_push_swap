@@ -21,5 +21,9 @@
 t_list	**ft_parse(int argc, char *argv[]);
 void	*ft_atopi(char *str);
 int		ft_isdup(t_list **lst);
+char	*ft_solve(t_list **a);
+t_list 	**ft_lstdup(t_list **lst);
+int		ft_issorted(t_list **lst);
+t_list	**ft_lstdouble(t_list **lst);
 
 #endif

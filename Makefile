@@ -1,4 +1,5 @@
-SRCS	= main.c ft_parse.c ft_atopi.c ft_isdup.c
+SRCS	= main.c ft_parse.c ft_atopi.c ft_isdup.c ft_solve.c ft_lstdup.c \
+			ft_issorted.c ft_lstdouble.c
 
 OBJS	= ${SRCS:.c=.o}
 
