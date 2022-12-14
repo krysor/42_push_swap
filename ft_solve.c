@@ -14,20 +14,34 @@ char	*ft_solve(t_list **a)
 		return ("sorted\n");	
 	//else, do the magic
 
+	
+	printf("__________________________\n");
 
 	printf("print a before\n");
-	printf("*a before: %p\n", a);
+	//printf("*a before: %p\n", a);
 	ft_putlst_fd(a, 1);
+	t_list **b = ft_lstinit();
+	printf("print b before\n");
+	ft_putlst_fd(b, 1);
+
 	printf("__________________________\n");
-	
-	ft_revrotate(a);
+
+	int	i = ft_lstsize(*a);
+	while (i > 1)
+	{	
+		ft_push(a, b);
+		i--;
+	}
 
 	printf("print a after\n");
-	printf("*a pointer after: %p\n", *a);
+	//printf("*a pointer after: %p\n", *a);
 	ft_putlst_fd(a, 1);
 
+	printf("print b after\n");
+	ft_putlst_fd(b, 1);
 	
 	ft_lstclear(a, (void *)free);
+	ft_lstclear(b, (void *)free);
 
 	return ("unsorted\n");
 }

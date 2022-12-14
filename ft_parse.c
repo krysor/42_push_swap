@@ -45,9 +45,10 @@ static t_list	**ft_atolst(char **arr, int	argc)
 	void	*content;
 
 	i = 0;
-	lst = (t_list **)malloc(sizeof(t_list *));
-	if (lst != NULL)
-		*lst = NULL;
+	lst = ft_lstinit();
+	//lst = (t_list **)malloc(sizeof(t_list *));
+	//if (lst != NULL)
+	//	*lst = NULL;
 	while (arr[i] != NULL)
 	{	
 		if (lst != NULL)
