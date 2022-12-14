@@ -30,16 +30,3 @@ t_list **ft_lstdup(t_list **lst)
 	}
 	return (dup);
 }
-
-void *ft_contdup(void *content)
-{
-	int	*dup;
-
-	if (content == NULL)
-		return (NULL);
-	dup = malloc(sizeof(content));
-	if (dup == NULL)
-		return (NULL);
-	*dup = *(int *)content;
-	return (dup);
-}

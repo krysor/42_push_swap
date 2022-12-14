@@ -26,4 +26,6 @@ t_list 	**ft_lstdup(t_list **lst);
 int		ft_issorted(t_list **lst);
 t_list	**ft_lstdouble(t_list **lst);
 
+void	*ft_contdup(void *content);
+
 #endif
