@@ -28,4 +28,6 @@ t_list	**ft_lstdouble(t_list **lst);
 
 void	*ft_contdup(void *content);
 
+void	ft_push(t_list **src, t_list **dst);
+
 #endif

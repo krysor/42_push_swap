@@ -14,9 +14,24 @@ char	*ft_solve(t_list **a)
 		return ("sorted\n");	
 	//else, do the magic
 
-	//do the LIS stuff
 
-	//I'll need F returning LIS with its contents
+	printf("print a before\n");
+	ft_putlst_fd(a, 1);
+	t_list **b = ft_lstdup(a);
+	printf("print b before\n");
+	ft_putlst_fd(a, 1);
+
+	ft_push(b, a);
+	
+	printf("print a after\n");
+	ft_putlst_fd(a, 1);
+	printf("print b after\n");
+	ft_putlst_fd(a, 1);
+
+	
+	ft_lstclear(a, (void *)free);
+	ft_lstclear(b, (void *)free);
+
 	return ("unsorted\n");
 }
 
