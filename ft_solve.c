@@ -9,22 +9,13 @@ t_list	*ft_nodedup(t_list *node);
 
 char	*ft_solve(t_list **a)
 {
-	//if input is sorted already, print empty strign
-	if (ft_issorted(a))
-		return ("sorted\n");	
-	//else, do the magic
-
+	char	*result;
+	t_list	**b;
 	
-	printf("__________________________\n");
-
-	printf("print a before\n");
-	//printf("*a before: %p\n", a);
-	ft_putlst_fd(a, 1);
-	t_list **b = ft_lstinit();
-	printf("print b before\n");
-	ft_putlst_fd(b, 1);
-
-	printf("__________________________\n");
+	result = ft_strempty();//maybe put one \n in this
+	b = ft_lstinit();
+	if (result == NULL || b == NULL)
+		ft_solve_exit(result, a, b);
 
 	int	i = ft_lstsize(*a);
 	while (i > 1)
@@ -33,17 +24,19 @@ char	*ft_solve(t_list **a)
 		i--;
 	}
 
-	printf("print a after\n");
-	//printf("*a pointer after: %p\n", *a);
-	ft_putlst_fd(a, 1);
+	ft_lstclear(a);
+	ft_lstclear(b);
+	return ();
+}
 
-	printf("print b after\n");
-	ft_putlst_fd(b, 1);
-	
-	ft_lstclear(a, (void *)free);
-	ft_lstclear(b, (void *)free);
-
-	return ("unsorted\n");
+void ft_solve_exit(char *result, t_list **a, t_list **b)
+{
+	if (result != NULL)
+		free(result);
+	ft_lstclear(a);
+	ft_lstclear(b);
+	ft_putstr_fd("Error\n", 2);
+	exit(-1);
 }
 
 static void	ft_putlst_fd(t_list **lst, int fd)//delete at the end

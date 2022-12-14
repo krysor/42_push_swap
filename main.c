@@ -13,10 +13,9 @@ int main(int argc, char *argv[])
 	input = ft_parse(argc, argv);
 	result = ft_solve(input);
 	ft_putstr_fd(result, 1);
-	//FREE input (with clear lst function)
 	ft_lstclear(input, (void *)free);
 	free(input);
-	//if (result != NULL)
-	//	free (result);
+	if (result != NULL)
+		free(result);
     return (1);
 }
