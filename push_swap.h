@@ -29,5 +29,8 @@ t_list	**ft_lstdouble(t_list **lst);
 void	*ft_contdup(void *content);
 
 void	ft_push(t_list **src, t_list **dst);
+void	ft_swap(t_list **lst);
+void	ft_rotate(t_list **lst);
+void	ft_revrotate(t_list **lst);
 
 #endif

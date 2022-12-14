@@ -16,21 +16,18 @@ char	*ft_solve(t_list **a)
 
 
 	printf("print a before\n");
+	printf("*a before: %p\n", a);
 	ft_putlst_fd(a, 1);
-	t_list **b = ft_lstdup(a);
-	printf("print b before\n");
-	ft_putlst_fd(a, 1);
-
-	ft_push(b, a);
+	printf("__________________________\n");
 	
+	ft_revrotate(a);
+
 	printf("print a after\n");
-	ft_putlst_fd(a, 1);
-	printf("print b after\n");
+	printf("*a pointer after: %p\n", *a);
 	ft_putlst_fd(a, 1);
 
 	
 	ft_lstclear(a, (void *)free);
-	ft_lstclear(b, (void *)free);
 
 	return ("unsorted\n");
 }
