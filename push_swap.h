@@ -35,4 +35,6 @@ void	ft_swap(t_list **lst);
 void	ft_rotate(t_list **lst);
 void	ft_revrotate(t_list **lst);
 
+char	*ft_strempty(void);
+
 #endif

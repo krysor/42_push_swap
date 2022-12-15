@@ -4,7 +4,7 @@ int	ft_issorted(t_list **lst)
 {
 	t_list *temp;
 	
-	if (ft_lstsize(*lst) == 1)
+	if (ft_lstsize(*lst) <= 1)
 		return (1);
 	temp = *lst;
 	while (temp->next)
