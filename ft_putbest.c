@@ -60,13 +60,13 @@ void	ft_get_nb_ra(t_list **ra, t_list **a)
 	tempra = *ra;
 	while (tempra)
 	{
-		i = 0;
+		i = 1;
 		tempa = *a;
 		while (tempa)
 		{
-			printf("segfault or nah\n");
 			if (ft_lstsize(*a) == 1 || (ft_issorted(a) &&
-				(*(int *)(tempra->content) < *(int *)((*a)->content))))//special case if only 1 element in a
+				((*(int *)(tempra->content) < *(int *)((*a)->content))
+				|| (*(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content)))))//special case if only 1 element in a
 			{
 				*(int *)(tempra->content) = 0;
 				break ;
