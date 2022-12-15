@@ -27,6 +27,8 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 	
 	//(void)b;
 	(void)result;
+	printf("a:____________________\n");
+	ft_putlst_fd(a, 1);
 	printf("ra before get_nb_ra:________________\n");
 	ft_putlst_fd(ra, 1);
 	ft_get_nb_ra(ra, a);
@@ -62,7 +64,7 @@ void	ft_get_nb_ra(t_list **ra, t_list **a)
 		tempa = *a;
 		while (tempa)
 		{
-			
+			printf("segfault or nah\n");
 			if (ft_lstsize(*a) == 1 || (ft_issorted(a) &&
 				(*(int *)(tempra->content) < *(int *)((*a)->content))))//special case if only 1 element in a
 			{
@@ -74,13 +76,13 @@ void	ft_get_nb_ra(t_list **ra, t_list **a)
 				*(int *)(tempra->content) = i;
 				break ;
 			}
-			if ((*(int *)(tempa->content)) < *(int *)(tempra->content)
+			if ((tempa->next != NULL) && (*(int *)(tempa->content)) < *(int *)(tempra->content)
 				&& *(int *)((tempa->next)->content) > *(int *)(tempra->content))
 			{
 				*(int *)(tempra->content) = i;
 				break ;
 			}
-			if (*(int *)(tempa->content) > *(int *)(tempra->content)
+			if ((tempa->next != NULL) && *(int *)(tempa->content) > *(int *)(tempra->content)
 				&& (*(int *)((tempa->next)->content)) < *(int *)(tempra->content))
 			{
 				*(int *)(tempra->content) = i;

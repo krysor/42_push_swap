@@ -68,6 +68,7 @@ void	ft_putlst_fd(t_list **lst, int fd)//delete at the end
 	ft_putstr_fd("putlst start:\n", fd);
 	ft_lstiter(*lst, (void *)ft_putcontent_fd);
 	ft_putstr_fd("putlst end;\n", fd);
+	ft_putstr_fd("_______________________\n", fd);
 }
 
 static void	ft_putcontent_fd(void *content)//delete at the end
