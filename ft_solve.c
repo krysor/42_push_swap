@@ -19,7 +19,7 @@ char	*ft_solve(t_list **a)
 	b = ft_lstinit();
 	if (result == NULL || b == NULL)
 		ft_solve_exit(a, b, result);
-	ft_pushallbutx(a, b, 1);
+	ft_pushallbutx(a, b, 3);
 
 	int i = 0;//delete later
 	while (i == 0)//!ft_issorted(a))
