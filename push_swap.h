@@ -37,4 +37,8 @@ void	ft_revrotate(t_list **lst);
 
 char	*ft_strempty(void);
 
+int ft_putbest(t_list **a, t_list **b, char *result);
+
+void	ft_putlst_fd(t_list **lst, int fd);//delete at the end
+
 #endif

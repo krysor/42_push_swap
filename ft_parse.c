@@ -7,8 +7,8 @@ static void		ft_freearr(char **arr);
 
 //DELETE AT THE END:
 static void		ft_putarr_fd(char **arr, int fd);
-static void		ft_putlst_fd(t_list **lst, int fd);
-static void		ft_putcontent_fd(void *content);
+//static void		ft_putlst_fd(t_list **lst, int fd);
+//static void		ft_putcontent_fd(void *content);
 
 t_list	**ft_parse(int argc, char *argv[])
 {
@@ -116,17 +116,4 @@ static void	ft_putarr_fd(char **arr, int fd)//delete at the end
 		ft_putchar_fd('\n', fd);
 		i++;
 	}
-}
-
-static void	ft_putlst_fd(t_list **lst, int fd)//delete at the end
-{	
-	ft_putstr_fd("putlst start:\n", fd);
-	ft_lstiter(*lst, (void *)ft_putcontent_fd);
-	ft_putstr_fd("putlst end;\n", fd);
-}
-
-static void	ft_putcontent_fd(void *content)//delete at the end
-{
-	ft_putnbr_fd(*(int *)content, 1);
-	ft_putchar_fd('\n', 1);
 }

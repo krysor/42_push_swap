@@ -1,13 +1,12 @@
 #include "push_swap.h"
 
 //DELETE AT THE END:
-static void		ft_putlst_fd(t_list **lst, int fd);
 static void		ft_putcontent_fd(void *content);
 
 t_list	**ft_allis_init(t_list **lst);
 t_list	*ft_nodedup(t_list *node);
 
-void	ft_solve_exit(char *result, t_list **a, t_list **b);
+void ft_solve_exit(t_list **a, t_list **b, char *result);
 
 void ft_pushallbutx(t_list **src, t_list **dst, int x);
 
@@ -19,19 +18,21 @@ char	*ft_solve(t_list **a)
 	result = ft_strempty();
 	b = ft_lstinit();
 	if (result == NULL || b == NULL)
-		ft_solve_exit(result, a, b);
-	
+		ft_solve_exit(a, b, result);
 	ft_pushallbutx(a, b, 1);
 
-	while (!ft_issorted(a))
+	int i = 0;//delete later
+	while (i == 0)//!ft_issorted(a))
 	{
-		ft_putbest(a, b, result);
+		if (!ft_putbest(a, b, result))
+			ft_solve_exit(a, b, result);
+		i++;
 	}
 
-	printf("a___________________:\n");
-	ft_putlst_fd(a, 1);
-	printf("b___________________:\n");
-	ft_putlst_fd(b, 1);
+	//printf("a___________________:\n");
+	//ft_putlst_fd(a, 1);
+	//printf("b___________________:\n");
+	//ft_putlst_fd(b, 1);
 
 	ft_lstclear(a, (void *)free);
 	ft_lstclear(b, (void *)free);
@@ -52,7 +53,7 @@ void ft_pushallbutx(t_list **src, t_list **dst, int x)
 	}
 }
 
-void ft_solve_exit(char *result, t_list **a, t_list **b)
+void ft_solve_exit(t_list **a, t_list **b, char *result)
 {
 	if (result != NULL)
 		free(result);
@@ -62,7 +63,7 @@ void ft_solve_exit(char *result, t_list **a, t_list **b)
 	exit(-1);
 }
 
-static void	ft_putlst_fd(t_list **lst, int fd)//delete at the end
+void	ft_putlst_fd(t_list **lst, int fd)//delete at the end
 {	
 	ft_putstr_fd("putlst start:\n", fd);
 	ft_lstiter(*lst, (void *)ft_putcontent_fd);
