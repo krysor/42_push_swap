@@ -1,0 +1,63 @@
+#include "push_swap.h"
+
+void ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
+{
+	t_list *tempra;
+	t_list *temprra;
+	t_list *temprb;
+	t_list *temprrb;
+
+	tempra = *ra;
+	temprra = *rra;
+	temprb = *rb;
+	temprrb = *rrb;
+	while (tempra)
+	{
+		ft_getbestmove(tempra, temprra, temprb, temprrb);
+		tempra = tempra->next;
+		temprra = temprra->next;
+		temprb = temprb->next;
+		temprrb = temprrb->next;
+	}
+}
+
+void ft_getbestmove(t_list *tempra, t_list *temprra, t_list *temprb, t_list *temprrb)
+{
+	int	rarb;
+	int	rarrb;
+	int	rrarb;
+	int	rrarrb;
+	
+	rarb = ft_max(*(int *)(tempra->content), *(int *)(temprb->content));
+	rarrb = *(int *)(tempra->content) + *(int *)(temprrb->content);
+	rrarb = *(int *)(temprra->content) + *(int *)(temprb->content);
+	rrarrb = ft_max(*(int *)(temprra->content), *(int *)(temprrb->content));
+	if (rarb <= rarrb && rarb <= rrarb && rarb <= rrarrb)
+		ft_setworst(temprra, temprrb);
+	else if (rarrb <= rarb && rarrb <= rrarb && rarrb <= rrarrb)
+		ft_setworst(temprra, temprb);
+	else if (rrarb <= rarb && rrarb <= rarrb && rrarb <= rrarrb)
+		ft_setworst(tempra, temprrb);
+	else if (rrarrb <= rarb && rrarrb <= rarrb && rrarrb <= rrarb)
+		ft_setworst(tempra, temprb);
+}
+
+void	ft_setworst(t_list *temp1, t_list *temp2)
+{
+	*(int *)(temp1->content) = -1;
+	*(int *)(temp2->content) = -1;
+}
+
+int	ft_max(int nb1, int nb2)
+{
+	if (nb1 >= nb2)
+		return (nb1);
+	return (nb2);
+}
+
+int	ft_min(int nb1, int nb2)
+{
+	if (nb1 <= nb2)
+		return (nb1);
+	return (nb2);
+}

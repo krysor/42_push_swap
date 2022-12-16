@@ -47,63 +47,6 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 	return (1);
 }
 
-void ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
-{
-	t_list *tempra;
-	t_list *temprra;
-	t_list *temprb;
-	t_list *temprrb;
-
-	tempra = *ra;
-	temprra = *rra;
-	temprb = *rb;
-	temprrb = *rrb;
-	while (tempra)
-	{
-		ft_getbestmove(tempra, temprra, temprb, temprrb);
-		tempra = tempra->next;
-		temprra = temprra->next;
-		temprb = temprb->next;
-		temprrb = temprrb->next;
-	}
-}
-
-void ft_getbestmove(t_list *tempra, t_list *temprra, t_list *temprb, t_list *temprrb)
-{
-	int	rarb;
-	int	rarrb;
-	int	rrarb;
-	int	rrarrb;
-	
-	rarb = ft_max(*(int *)(tempra->content), *(int *)(temprb->content));
-	rarrb = *(int *)(tempra->content) + *(int *)(temprrb->content);
-	rrarb = *(int *)(temprra->content) + *(int *)(temprb->content);
-	rrarrb = ft_max(*(int *)(temprra->content), *(int *)(temprrb->content))
-	//4 cases
-	//	ra + rb
-	if (rarb <= rarrb && rarb <= rrarb && rarb <= rrarrb)
-	//	ra + rrb
-	else if (rarrb <= rarb && rarrb <= rrarb && rarrb <= rrarrb)
-	//	rra + rb
-	else if (rrarb <= rarb && rrarb <= rarrb && rrarb <= rrarrb)
-	//	rra + rrb
-	else if (rrarrb <= rarb && rrarrb <= rarrb && rrarrb <= rrarb)
-}
-
-int	ft_max(int nb1, int nb2)
-{
-	if (nb1 >= nb2)
-		return (nb1);
-	return (nb2);
-}
-
-int	ft_min(int nb1, int nb2)
-{
-	if (nb1 <= nb2)
-		return (nb1);
-	return (nb2);
-}
-
 void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
 {
 	ft_lstclear(ra, (void *)free);
