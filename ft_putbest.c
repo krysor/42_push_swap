@@ -6,6 +6,7 @@ void	ft_get_nb_rrb(t_list **rrb);
 void	ft_get_nb_ra(t_list **ra, t_list **a);
 int		ft_ra_iszero(t_list *tempra, t_list **a);
 int		ft_ra_iselse(t_list *tempra, t_list *tempa);
+void	ft_get_nb_rra(t_list **rra, t_list **a);
 
 	//this is about ONE SINGLE MOVE
 int ft_putbest(t_list **a, t_list **b, char *result)
@@ -27,15 +28,15 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 	//calculate nb of ra in A for all elements in B
 	
 	
-	//(void)b;
+	(void)b;
 	(void)result;
 	printf("a:____________________\n");
 	ft_putlst_fd(a, 1);
-	printf("ra before get_nb_ra:________________\n");
-	ft_putlst_fd(ra, 1);
-	ft_get_nb_ra(ra, a);
-	printf("ra after get_nb_ra:________________\n");
-	ft_putlst_fd(ra, 1);
+	printf("rra before get_nb_rra:________________\n");
+	ft_putlst_fd(rra, 1);
+	ft_get_nb_rra(rra, a);
+	printf("rra after get_nb_rra:________________\n");
+	ft_putlst_fd(rra, 1);
 	
 	//calculate which should get put first
 		//calculate how many instructions of each type for each
@@ -83,13 +84,30 @@ void	ft_get_nb_ra(t_list **ra, t_list **a)
 	}
 }
 
+void	ft_get_nb_rra(t_list **rra, t_list **a)
+{
+	int	n;
+	t_list	*temprra;
+
+	ft_get_nb_ra(rra, a);
+	n = ft_lstsize(*a);
+	temprra = *rra;
+	while (temprra)
+	{
+		if (*(int *)(temprra->content))
+			*(int *)(temprra->content) = n - *(int *)(temprra->content);
+		temprra = temprra->next;
+	}
+	//*(int *)((*rra)->content) = 0;
+}
+
 int	ft_ra_iszero(t_list *tempra, t_list **a)
 {
 	if (ft_lstsize(*a) == 1 || (ft_issorted(a) &&
-				(*(int *)(tempra->content) < *(int *)((*a)->content)
-				|| *(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content)))
-				|| (*(int *)(tempra->content) < *(int *)((*a)->content)
-					&& *(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content)))
+		(*(int *)(tempra->content) < *(int *)((*a)->content)
+		|| *(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content)))
+		|| (*(int *)(tempra->content) < *(int *)((*a)->content)
+		&& *(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content)))
 		return (1);
 	return (0);
 }
@@ -135,6 +153,7 @@ void	ft_get_nb_rrb(t_list **rrb)
 		i--;
 		temp = temp->next;
 	}
+	*(int *)((*rrb)->content) = 0;
 }
 
 void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
