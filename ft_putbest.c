@@ -66,24 +66,33 @@ void	ft_get_nb_ra(t_list **ra, t_list **a)
 		{
 			if (ft_lstsize(*a) == 1 || (ft_issorted(a) &&
 				((*(int *)(tempra->content) < *(int *)((*a)->content))
-				|| (*(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content)))))//special case if only 1 element in a
+				|| (*(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content))))
+				|| ((*(int *)(tempra->content) < *(int *)((*a)->content))
+					&& (*(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content))))
 			{
 				*(int *)(tempra->content) = 0;
 				break ;
 			}
+			/*
 			if ((*(int *)(tempa->content) < *(int *)(tempra->content)) && tempa->next == NULL)
 			{
 				*(int *)(tempra->content) = i;
 				break ;
-			}
-			if ((tempa->next != NULL) && (*(int *)(tempa->content)) < *(int *)(tempra->content)
-				&& *(int *)((tempa->next)->content) > *(int *)(tempra->content))
-			{
+			}*/
+			if ((tempa->next != NULL) && (*(int *)(tempa->content) < *(int *)(tempra->content))
+				&& *(int *)(tempra->content) < *(int *)((tempa->next)->content))
+			{//how tf is this correct for 7 1 5 10
 				*(int *)(tempra->content) = i;
 				break ;
 			}
-			if ((tempa->next != NULL) && *(int *)(tempa->content) > *(int *)(tempra->content)
-				&& (*(int *)((tempa->next)->content)) < *(int *)(tempra->content))
+			if (tempa->next != NULL && *(int *)(tempra->content) < *(int *)(tempa->content)
+				&& *(int *)(tempra->content) < *(int *)((tempa->next)->content))
+			{//this and the next one should go together //NOT CORRECT ENOUGH: HAS TO BE BIGGER THAN THE LAST ONLY + SAME FOR SMALLER
+				*(int *)(tempra->content) = i;
+				break ;
+			}//this is the next one
+			if (tempa->next != NULL && *(int *)(tempra->content) > *(int *)(tempa->content)
+				&& *(int *)(tempra->content) > *(int *)((tempa->next)->content))
 			{
 				*(int *)(tempra->content) = i;
 				break ;
