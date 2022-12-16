@@ -25,26 +25,27 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 		ft_putbest_free(ra, rra, rb, rrb);
 		return (0);
 	}
-	//calculate nb of ra in A for all elements in B
-	
-	
+	//decide which move
+
+	(void)a;
 	(void)b;
 	(void)result;
+	/*
 	printf("a:____________________\n");
 	ft_putlst_fd(a, 1);
-	printf("rra before get_nb_rra:________________\n");
-	ft_putlst_fd(rra, 1);
-	ft_get_nb_rra(rra, a);
+	printf("rb before get_nb_rb:________________\n");
+	ft_putlst_fd(rb, 1);
+	ft_get_nb_rb(rb);
 	printf("rra after get_nb_rra:________________\n");
-	ft_putlst_fd(rra, 1);
-	
+	ft_putlst_fd(rb, 1);
+	*/
 	//calculate which should get put first
 		//calculate how many instructions of each type for each
 			//get the information
-				//how many moves in a
-				//how many moves in b
+				//how many moves in a//done
+				//how many moves in b//done
 				//magic 2x2 table
-			//calculate each information
+			//calculate each information//done
 		//choose the best one
 			//iterate over data structure and save the current best choice
 		//append the instructions to the instructions strings
@@ -98,7 +99,6 @@ void	ft_get_nb_rra(t_list **rra, t_list **a)
 			*(int *)(temprra->content) = n - *(int *)(temprra->content);
 		temprra = temprra->next;
 	}
-	//*(int *)((*rra)->content) = 0;
 }
 
 int	ft_ra_iszero(t_list *tempra, t_list **a)
@@ -158,14 +158,14 @@ void	ft_get_nb_rrb(t_list **rrb)
 
 void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
 {
-	if (ra != NULL)
-		ft_lstclear(ra, (void *)free);
-	if (rra != NULL)
-		ft_lstclear(rra, (void *)free);
-	if (rb != NULL)
-		ft_lstclear(rb, (void *)free);
-	if (rrb != NULL)
-		ft_lstclear(rrb, (void *)free);
+	ft_lstclear(ra, (void *)free);
+	ft_lstclear(rra, (void *)free);
+	ft_lstclear(rb, (void *)free);
+	ft_lstclear(rrb, (void *)free);
+	free(ra);
+	free(rra);
+	free(rb);
+	free(rrb);
 }
 
 			/*

@@ -36,6 +36,7 @@ char	*ft_solve(t_list **a)
 
 	ft_lstclear(a, (void *)free);
 	ft_lstclear(b, (void *)free);
+	free(b);
 	return (result);
 }
 
@@ -59,6 +60,7 @@ void ft_solve_exit(t_list **a, t_list **b, char *result)
 		free(result);
 	ft_lstclear(a, (void *)free);
 	ft_lstclear(b, (void *)free);
+	free(b);
 	ft_putstr_fd("Error\n", 2);
 	exit(-1);
 }
