@@ -4,6 +4,8 @@ void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 void	ft_get_nb_rb(t_list **rb);
 void	ft_get_nb_rrb(t_list **rrb);
 void	ft_get_nb_ra(t_list **ra, t_list **a);
+int		ft_ra_iszero(t_list *tempra, t_list **a);
+int		ft_ra_iselse(t_list *tempra, t_list *tempa);
 
 	//this is about ONE SINGLE MOVE
 int ft_putbest(t_list **a, t_list **b, char *result)
@@ -64,26 +66,12 @@ void	ft_get_nb_ra(t_list **ra, t_list **a)
 		tempa = *a;
 		while (tempa)
 		{
-			if (ft_lstsize(*a) == 1 || (ft_issorted(a) &&
-				((*(int *)(tempra->content) < *(int *)((*a)->content))
-				|| (*(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content))))
-				|| ((*(int *)(tempra->content) < *(int *)((*a)->content))
-					&& (*(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content))))
+			if (ft_ra_iszero(tempra, a))
 			{
 				*(int *)(tempra->content) = 0;
 				break ;
 			}
-			if ((tempa->next != NULL) && (*(int *)(tempa->content) < *(int *)(tempra->content))
-				&& *(int *)(tempra->content) < *(int *)((tempa->next)->content))
-			{//how tf is this correct for 7 1 5 10
-				*(int *)(tempra->content) = i;
-				break ;
-			}
-			if (tempa->next != NULL && *(int *)(tempa->content) > *(int *)((tempa->next)->content)
-				&& ((*(int *)(tempra->content) < *(int *)(tempa->content)
-				&& *(int *)(tempra->content) < *(int *)((tempa->next)->content))
-				|| (*(int *)(tempra->content) > *(int *)(tempa->content)
-				&& *(int *)(tempra->content) > *(int *)((tempa->next)->content))))
+			if (ft_ra_iselse(tempra, tempa))
 			{
 				*(int *)(tempra->content) = i;
 				break ;
@@ -93,6 +81,30 @@ void	ft_get_nb_ra(t_list **ra, t_list **a)
 		}
 		tempra = tempra->next;
 	}
+}
+
+int	ft_ra_iszero(t_list *tempra, t_list **a)
+{
+	if (ft_lstsize(*a) == 1 || (ft_issorted(a) &&
+				(*(int *)(tempra->content) < *(int *)((*a)->content)
+				|| *(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content)))
+				|| (*(int *)(tempra->content) < *(int *)((*a)->content)
+					&& *(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content)))
+		return (1);
+	return (0);
+}
+
+int	ft_ra_iselse(t_list *tempra, t_list *tempa)
+{
+	if (tempa->next != NULL && ((*(int *)(tempa->content) < *(int *)(tempra->content)
+		&& *(int *)(tempra->content) < *(int *)((tempa->next)->content))
+		|| (*(int *)(tempa->content) > *(int *)((tempa->next)->content)
+		&& ((*(int *)(tempra->content) < *(int *)(tempa->content)
+		&& *(int *)(tempra->content) < *(int *)((tempa->next)->content))
+		|| (*(int *)(tempra->content) > *(int *)(tempa->content)
+		&& *(int *)(tempra->content) > *(int *)((tempa->next)->content))))))
+		return (1);
+	return (0);
 }
 
 void	ft_get_nb_rb(t_list **rb)
@@ -136,3 +148,21 @@ void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
 	if (rrb != NULL)
 		ft_lstclear(rrb, (void *)free);
 }
+
+			/*
+			if (tempa->next != NULL && *(int *)(tempa->content) < *(int *)(tempra->content)
+				&& *(int *)(tempra->content) < *(int *)((tempa->next)->content))
+			{
+				*(int *)(tempra->content) = i;
+				break ;
+			}
+			if (tempa->next != NULL && *(int *)(tempa->content) > *(int *)((tempa->next)->content)
+				&& ((*(int *)(tempra->content) < *(int *)(tempa->content)
+				&& *(int *)(tempra->content) < *(int *)((tempa->next)->content))
+				|| (*(int *)(tempra->content) > *(int *)(tempa->content)
+				&& *(int *)(tempra->content) > *(int *)((tempa->next)->content))))
+			{
+				*(int *)(tempra->content) = i;
+				break ;
+			}
+			*/
