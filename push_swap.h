@@ -41,4 +41,11 @@ int ft_putbest(t_list **a, t_list **b, char *result);
 
 void	ft_putlst_fd(t_list **lst, int fd);//delete at the end
 
+void	ft_get_nb_rb(t_list **rb);
+void	ft_get_nb_rrb(t_list **rrb);
+void	ft_get_nb_ra(t_list **ra, t_list **a);
+int		ft_ra_iszero(t_list *tempra, t_list **a);
+int		ft_ra_iselse(t_list *tempra, t_list *tempa);
+void	ft_get_nb_rra(t_list **rra, t_list **a);
+
 #endif
