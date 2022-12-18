@@ -11,3 +11,15 @@ void	ft_swap(t_list **lst)
 	temp->next = *lst;
 	*lst = temp;
 }
+
+char	*ft_swapsave(t_list **lst, char *result, char *str)
+{
+	char *new_str;
+
+	ft_swap(lst);
+	new_str = ft_strjoin(result, str);
+	free(result);
+	if (!new_str)
+		return (NULL);
+	return (new_str);
+}

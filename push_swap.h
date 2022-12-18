@@ -24,6 +24,7 @@ int		ft_isdup(t_list **lst);
 char	*ft_solve(t_list **a);
 t_list 	**ft_lstdup(t_list **lst);
 int		ft_issorted(t_list **lst);
+int		ft_iscis(t_list **lst);
 t_list	**ft_lstdouble(t_list **lst);
 
 void	*ft_contdup(void *content);
@@ -34,7 +35,9 @@ void	ft_push(t_list **src, t_list **dst);
 char	*ft_pushsave(t_list **src, t_list **dst, char *result, char *str);
 void	ft_swap(t_list **lst);
 void	ft_rotate(t_list **lst);
+char	*ft_rotatesave(t_list **lst, char *result, char *str);
 void	ft_revrotate(t_list **lst);
+char	*ft_revrotatesave(t_list **lst, char *result, char *str);
 
 char	*ft_strempty(void);
 
@@ -53,5 +56,7 @@ void	ft_setbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 int		*ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 int		ft_max(int nb1, int nb2);
+
+void	ft_cistosorted(t_list **lst, char *result);
 
 #endif

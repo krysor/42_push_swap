@@ -11,3 +11,15 @@ void	ft_rotate(t_list **lst)
 	temp->next = NULL;
 	ft_lstadd_back(lst, temp);
 }
+
+char	*ft_rotatesave(t_list **lst, char *result, char *str)
+{
+	char *new_str;
+
+	ft_rotate(lst);
+	new_str = ft_strjoin(result, str);
+	//free(result); //this gives a double free
+	if (!new_str)
+		return (NULL);
+	return (new_str);
+}

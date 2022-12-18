@@ -18,10 +18,21 @@ char	*ft_solve(t_list **a)
 	b = ft_lstinit();
 	if (result == NULL || b == NULL)
 		ft_solve_exit(a, b, result);
+
+	if (ft_iscis(a))
+	{
+		ft_cistosorted(a, result);
+		ft_lstclear(a, (void *)free);
+		ft_lstclear(b, (void *)free);
+		free(b);
+		return (result);
+	}	
+		
 	result = ft_pushallbutxtob(a, b, 3, result);//for final version leave 2 elements in a
 	if (!result)
 		ft_solve_exit(a, b, result);
 		
+	/*
 	int i = 0;//delete later
 	while (i == 0)//!ft_issorted(a))
 	{
@@ -29,13 +40,12 @@ char	*ft_solve(t_list **a)
 			ft_solve_exit(a, b, result);
 		i++;
 		if (ft_lstsize(*b) == 0)
-			break;
+		{
+			
+			break ;
+		}
 	}
-
-	//printf("a___________________:\n");
-	//ft_putlst_fd(a, 1);
-	//printf("b___________________:\n");
-	//ft_putlst_fd(b, 1);
+	*/
 
 	ft_lstclear(a, (void *)free);
 	ft_lstclear(b, (void *)free);

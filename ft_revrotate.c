@@ -19,3 +19,15 @@ void	ft_revrotate(t_list **lst)
 	new_last->next = NULL;
 	ft_lstadd_front(lst, old_last);
 }
+
+char	*ft_revrotatesave(t_list **lst, char *result, char *str)
+{
+	char *new_str;
+
+	ft_revrotate(lst);
+	new_str = ft_strjoin(result, str);
+	free(result);
+	if (!new_str)
+		return (NULL);
+	return (new_str);
+}
