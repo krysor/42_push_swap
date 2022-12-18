@@ -38,7 +38,7 @@ int	ft_iscis(t_list **lst)
 	return (1);
 }
 
-void	ft_cistosorted(t_list **lst, char *result)
+char	*ft_cistosorted(t_list **lst, char *result)
 {
 	t_list	*temp;
 	int		tie;
@@ -52,14 +52,15 @@ void	ft_cistosorted(t_list **lst, char *result)
 		tie++;
 		temp = temp->next;	
 	}
-	if (tie <= ft_lstsize(*lst) / 2)
+	if (tie < ft_lstsize(*lst) / 2)
 	{
-		while (!ft_issorted(lst))
+		while (result != NULL && !ft_issorted(lst))
 			result = ft_rotatesave(lst, result, "ra\n\0");
 	}	
 	else
 	{
-		while (!ft_issorted(lst))
+		while (result != NULL && !ft_issorted(lst))
 			result = ft_revrotatesave(lst, result, "rra\n\0");
 	}
+	return (result);
 }

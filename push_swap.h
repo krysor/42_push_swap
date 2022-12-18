@@ -57,6 +57,6 @@ void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 int		*ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 int		ft_max(int nb1, int nb2);
 
-void	ft_cistosorted(t_list **lst, char *result);
+char	*ft_cistosorted(t_list **lst, char *result);
 
 #endif

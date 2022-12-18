@@ -21,31 +21,29 @@ char	*ft_solve(t_list **a)
 
 	if (ft_iscis(a))
 	{
-		ft_cistosorted(a, result);
+		result = ft_cistosorted(a, result);
 		ft_lstclear(a, (void *)free);
 		ft_lstclear(b, (void *)free);
 		free(b);
 		return (result);
 	}	
-		
+
 	result = ft_pushallbutxtob(a, b, 3, result);//for final version leave 2 elements in a
 	if (!result)
 		ft_solve_exit(a, b, result);
-		
-	/*
+
 	int i = 0;//delete later
-	while (i == 0)//!ft_issorted(a))
+	while (i == 0)//!ft_issorted(a)) && !ft_iscis(a)+ add the necessary conditions
 	{
+		if (ft_lstsize(*b) == 0 && ft_iscis(a))
+		{
+			result = ft_cistosorted(a, result);
+			break ;
+		}
 		if (!ft_putbest(a, b, result))
 			ft_solve_exit(a, b, result);
 		i++;
-		if (ft_lstsize(*b) == 0)
-		{
-			
-			break ;
-		}
 	}
-	*/
 
 	ft_lstclear(a, (void *)free);
 	ft_lstclear(b, (void *)free);
@@ -78,6 +76,7 @@ void ft_solve_exit(t_list **a, t_list **b, char *result)
 		free(result);
 	ft_lstclear(a, (void *)free);
 	ft_lstclear(b, (void *)free);
+	free(a);
 	free(b);
 	ft_putstr_fd("Error\n", 2);
 	exit(-1);

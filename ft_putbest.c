@@ -80,10 +80,11 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 	free(moves);
 	return (1);
 }
-/*char	*ft_executemoves(char *result, int *moves)
+
+char	*ft_executemoves(t_list **a, t_list **b, char *result, int *moves)
 {
 	if (moves[0] != -1 && moves[2] != -1)
-		//bhjj
+		//rotate
 	else if (moves[1] != -1 && moves[3] != -1)
 		//rrotate
 	else
@@ -91,7 +92,24 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 		//rrotate
 	free(moves);
 	return (result);
-}*/
+}
+
+/*is this correct?*/
+char	*ft_executerr(t_list **a, t_list **b, char *result, int *moves)
+{
+	while (result != NULL && moves[0] && moves[2])
+	{
+		result = ft_rotatesave(a, result, "rr\n\0");
+		result = ft_rotatesave(b, result, "\0");
+		moves[0]--;
+		moves[2]--;
+	}
+	while (result != NULL && moves[2]--)
+		result = ft_rotatesave(b, result, "rb\n\0");
+	result = ft_pushsave(b, a, result, "pa\n\0");
+	while (result != NULL && moves[0]--)
+		result = ft_rotatesave(a, result, "ra\n\0");
+}
 
 void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
 {
@@ -110,4 +128,18 @@ int	ft_max(int nb1, int nb2)
 	if (nb1 >= nb2)
 		return (nb1);
 	return (nb2);
+}
+
+int	ft_min(int nb1, int nb2)
+{
+	if (nb1 <= nb2)
+		return (nb1);
+	return (nb2);
+}
+
+int	ft_abs(int nb)
+{
+	if (nb < 0)
+		return (-nb);
+	return (nb);
 }
