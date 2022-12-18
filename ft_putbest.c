@@ -84,17 +84,26 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 char	*ft_executemoves(t_list **a, t_list **b, char *result, int *moves)
 {
 	if (moves[0] != -1 && moves[2] != -1)
-		//rotate
+		result = ft_executerr(a, b, result, moves);
 	else if (moves[1] != -1 && moves[3] != -1)
-		//rrotate
+		result = ft_executerrr(a, b, result, moves);
 	else
-		//rotate
-		//rrotate
+	{
+		while (result != NULL && moves[3]--)
+			result = ft_rotatesave(b, result, "rrb\n\0");
+		while (result != NULL && moves[2]--)
+			result = ft_rotatesave(b, result, "rb\n\0");
+		if (result != NULL)
+		result = ft_pushsave(b, a, result, "pa\n\0");
+		while (result != NULL && moves[3]--)
+			result = ft_rotatesave(b, result, "rrb\n\0");
+		while (result != NULL && moves[2]--)
+			result = ft_rotatesave(b, result, "rb\n\0");
+	}
 	free(moves);
 	return (result);
 }
 
-/*is this correct?*/
 char	*ft_executerr(t_list **a, t_list **b, char *result, int *moves)
 {
 	while (result != NULL && moves[0] && moves[2])
@@ -106,9 +115,33 @@ char	*ft_executerr(t_list **a, t_list **b, char *result, int *moves)
 	}
 	while (result != NULL && moves[2]--)
 		result = ft_rotatesave(b, result, "rb\n\0");
-	result = ft_pushsave(b, a, result, "pa\n\0");
 	while (result != NULL && moves[0]--)
 		result = ft_rotatesave(a, result, "ra\n\0");
+	if (result != NULL)
+		result = ft_pushsave(b, a, result, "pa\n\0");
+	else
+		return (NULL);
+	return (result);
+}
+
+char	*ft_executerrr(t_list **a, t_list **b, char *result, int *moves)
+{
+	while (result != NULL && moves[1] && moves[3])
+	{
+		result = ft_revrotatesave(a, result, "rrr\n\0");
+		result = ft_revrotatesave(b, result, "\0");
+		moves[1]--;
+		moves[3]--;
+	}
+	while (result != NULL && moves[3]--)
+		result = ft_rotatesave(b, result, "rrb\n\0");
+	while (result != NULL && moves[1]--)
+		result = ft_rotatesave(a, result, "rra\n\0");
+	if (result != NULL)
+		result = ft_pushsave(b, a, result, "pa\n\0");
+	else
+		return (NULL);
+	return (result);
 }
 
 void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
