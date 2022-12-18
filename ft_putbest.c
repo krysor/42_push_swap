@@ -80,17 +80,18 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 	free(moves);
 	return (1);
 }
-
-char	*ft_executemoves(char *result, int *moves)
+/*char	*ft_executemoves(char *result, int *moves)
 {
-	if (!moves[0] && !moves[2])
-		//rotate
-	else if (!moves[1] && !moves[3])
+	if (moves[0] != -1 && moves[2] != -1)
+		//bhjj
+	else if (moves[1] != -1 && moves[3] != -1)
 		//rrotate
 	else
 		//rotate
 		//rrotate
-}
+	free(moves);
+	return (result);
+}*/
 
 void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
 {

@@ -7,8 +7,7 @@ t_list	**ft_allis_init(t_list **lst);
 t_list	*ft_nodedup(t_list *node);
 
 void ft_solve_exit(t_list **a, t_list **b, char *result);
-
-void ft_pushallbutx(t_list **src, t_list **dst, int x);
+char	*ft_pushallbutxtob(t_list **src, t_list **dst, int x, char *result);
 
 char	*ft_solve(t_list **a)
 {
@@ -19,8 +18,10 @@ char	*ft_solve(t_list **a)
 	b = ft_lstinit();
 	if (result == NULL || b == NULL)
 		ft_solve_exit(a, b, result);
-	ft_pushallbutx(a, b, 3);//for final version leave 2 elements in a
-
+	result = ft_pushallbutxtob(a, b, 3, result);//for final version leave 2 elements in a
+	if (!result)
+		ft_solve_exit(a, b, result);
+		
 	int i = 0;//delete later
 	while (i == 0)//!ft_issorted(a))
 	{
@@ -42,18 +43,23 @@ char	*ft_solve(t_list **a)
 	return (result);
 }
 
-void ft_pushallbutx(t_list **src, t_list **dst, int x)
+char	*ft_pushallbutxtob(t_list **src, t_list **dst, int x, char *result)
 {
 	int	i;
+	char	*new_result;
 	
 	i = ft_lstsize(*src);
 	if (x < 0)
 		x = 0;
+	new_result = result;
 	while (i > x)
 	{	
-		ft_push(src, dst);
+		new_result = ft_pushsave(src, dst, new_result, "pa\n\0");
+		if (!new_result)
+			return (NULL);
 		i--;
 	}
+	return (new_result);
 }
 
 void ft_solve_exit(t_list **a, t_list **b, char *result)

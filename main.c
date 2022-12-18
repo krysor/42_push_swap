@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
 	ft_putstr_fd(result, 1);
 	ft_lstclear(input, (void *)free);
 	free(input);
-		if (result != NULL)
 	free(result);
     return (1);
 }

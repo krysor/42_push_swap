@@ -31,6 +31,7 @@ void	*ft_contdup(void *content);
 t_list	**ft_lstinit(void);
 
 void	ft_push(t_list **src, t_list **dst);
+char	*ft_pushsave(t_list **src, t_list **dst, char *result, char *str);
 void	ft_swap(t_list **lst);
 void	ft_rotate(t_list **lst);
 void	ft_revrotate(t_list **lst);
