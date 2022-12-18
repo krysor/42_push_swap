@@ -48,10 +48,9 @@ int		ft_ra_iszero(t_list *tempra, t_list **a);
 int		ft_ra_iselse(t_list *tempra, t_list *tempa);
 void	ft_get_nb_rra(t_list **rra, t_list **a);
 
-void ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
-void ft_getbestmove(t_list *tempra, t_list *temprra, t_list *temprb, t_list *temprrb);
-void	ft_setworst(t_list *temp1, t_list *temp2);
-int	ft_max(int nb1, int nb2);
-int	ft_min(int nb1, int nb2);
+void	ft_setbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
+void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
+int		*ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
+int		ft_max(int nb1, int nb2);
 
 #endif

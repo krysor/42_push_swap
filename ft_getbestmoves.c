@@ -1,11 +1,15 @@
 #include "push_swap.h"
 
-void ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
+static int	*ft_savebestmoves(t_list *ra, t_list *rra, t_list *rb, t_list *rrb);
+static int	ft_getnbleastmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
+static int	ft_getnbmoves(t_list *ra, t_list *rra, t_list *rb, t_list *rrb);
+
+int	*ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
 {
-	t_list *tempra;
-	t_list *temprra;
-	t_list *temprb;
-	t_list *temprrb;
+	t_list	*tempra;
+	t_list	*temprra;
+	t_list	*temprb;
+	t_list	*temprrb;
 
 	tempra = *ra;
 	temprra = *rra;
@@ -13,15 +17,56 @@ void ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
 	temprrb = *rrb;
 	while (tempra)
 	{
-		ft_getbestmove(tempra, temprra, temprb, temprrb);
+		if (ft_getnbleastmoves(ra, rra, rb, rrb) == ft_getnbmoves(tempra, temprra, temprb, temprrb))
+			return (ft_savebestmoves(tempra, temprra, temprb, temprrb));
 		tempra = tempra->next;
 		temprra = temprra->next;
 		temprb = temprb->next;
 		temprrb = temprrb->next;
 	}
+	return (NULL);
 }
 
-void ft_getbestmove(t_list *tempra, t_list *temprra, t_list *temprb, t_list *temprrb)
+static int	*ft_savebestmoves(t_list *ra, t_list *rra, t_list *rb, t_list *rrb)
+{
+	int	*bestmoves;
+
+	bestmoves = malloc(sizeof(int) * 4);
+	if (!bestmoves)
+		return (NULL);
+	bestmoves[0] = *(int *)(ra->content);
+	bestmoves[1] = *(int *)(rra->content);
+	bestmoves[2] = *(int *)(rb->content);
+	bestmoves[3] = *(int *)(rrb->content);
+	return (bestmoves);
+}
+
+static int	ft_getnbleastmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
+{
+	int	least_moves;
+	t_list	*tempra;
+	t_list	*temprra;
+	t_list	*temprb;
+	t_list	*temprrb;
+
+	tempra = *ra;
+	temprra = *rra;
+	temprb = *rb;
+	temprrb = *rrb;
+	least_moves = ft_getnbmoves(tempra, temprra, temprb, temprrb);
+	while (tempra)
+	{
+		if (ft_getnbmoves(tempra, temprra, temprb, temprrb) < least_moves)
+			least_moves = ft_getnbmoves(tempra, temprra, temprb, temprrb);
+		tempra = tempra->next;
+		temprra = temprra->next;
+		temprb = temprb->next;
+		temprrb = temprrb->next;
+	}
+	return (least_moves);
+}
+
+static int	ft_getnbmoves(t_list *tempra, t_list *temprra, t_list *temprb, t_list *temprrb)
 {
 	int	rarb;
 	int	rarrb;
@@ -33,24 +78,11 @@ void ft_getbestmove(t_list *tempra, t_list *temprra, t_list *temprb, t_list *tem
 	rrarb = *(int *)(temprra->content) + *(int *)(temprb->content);
 	rrarrb = ft_max(*(int *)(temprra->content), *(int *)(temprrb->content));
 	if (rarb <= rarrb && rarb <= rrarb && rarb <= rrarrb)
-		ft_setworst(temprra, temprrb);
+		return (rarb);
 	else if (rarrb <= rarb && rarrb <= rrarb && rarrb <= rrarrb)
-		ft_setworst(temprra, temprb);
+		return (rarrb);
 	else if (rrarb <= rarb && rrarb <= rarrb && rrarb <= rrarrb)
-		ft_setworst(tempra, temprrb);
-	else if (rrarrb <= rarb && rrarrb <= rarrb && rrarrb <= rrarb)
-		ft_setworst(tempra, temprb);
-}
-
-void	ft_setworst(t_list *temp1, t_list *temp2)
-{
-	*(int *)(temp1->content) = -1;
-	*(int *)(temp2->content) = -1;
-}
-
-int	ft_max(int nb1, int nb2)
-{
-	if (nb1 >= nb2)
-		return (nb1);
-	return (nb2);
+		return (rrarb);
+	else//if (rrarrb <= rarb && rrarrb <= rarrb && rrarrb <= rrarb)
+		return (rrarrb);
 }

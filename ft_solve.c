@@ -19,7 +19,7 @@ char	*ft_solve(t_list **a)
 	b = ft_lstinit();
 	if (result == NULL || b == NULL)
 		ft_solve_exit(a, b, result);
-	ft_pushallbutx(a, b, 3);
+	ft_pushallbutx(a, b, 3);//for final version leave 2 elements in a
 
 	int i = 0;//delete later
 	while (i == 0)//!ft_issorted(a))
@@ -27,6 +27,8 @@ char	*ft_solve(t_list **a)
 		if (!ft_putbest(a, b, result))
 			ft_solve_exit(a, b, result);
 		i++;
+		if (ft_lstsize(*b) == 0)
+			break;
 	}
 
 	//printf("a___________________:\n");
