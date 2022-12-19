@@ -28,21 +28,23 @@ char	*ft_solve(t_list **a)
 		return (result);
 	}	
 
-	result = ft_pushallbutxtob(a, b, 3, result);//for final version leave 2 elements in a
+	result = ft_pushallbutxtob(a, b, 2, result);//for final version leave 2 elements in a
 	if (!result)
 		ft_solve_exit(a, b, result);
 
-	int i = 0;//delete later
-	while (i == 0)//!ft_issorted(a)) && !ft_iscis(a)+ add the necessary conditions
+	//int i = 0;//delete later
+	while (ft_lstsize(*b) != 0)//!ft_issorted(a)) && !ft_iscis(a)+ add the necessary conditions
 	{
-		if (ft_lstsize(*b) == 0 && ft_iscis(a))
-		{
-			result = ft_cistosorted(a, result);
-			break ;
-		}
-		if (!ft_putbest(a, b, result))
+		result = ft_putbest(a, b, result); 
+		if (result == NULL)
 			ft_solve_exit(a, b, result);
-		i++;
+		//i++;
+	}
+
+	if (ft_lstsize(*b) == 0 && ft_iscis(a))
+	{
+		result = ft_cistosorted(a, result);
+		//break ;
 	}
 
 	ft_lstclear(a, (void *)free);
@@ -62,7 +64,7 @@ char	*ft_pushallbutxtob(t_list **src, t_list **dst, int x, char *result)
 	new_result = result;
 	while (i > x)
 	{	
-		new_result = ft_pushsave(src, dst, new_result, "pa\n\0");
+		new_result = ft_pushsave(src, dst, new_result, "pb\n\0");
 		if (!new_result)
 			return (NULL);
 		i--;

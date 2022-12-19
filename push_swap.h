@@ -41,7 +41,7 @@ char	*ft_revrotatesave(t_list **lst, char *result, char *str);
 
 char	*ft_strempty(void);
 
-int ft_putbest(t_list **a, t_list **b, char *result);
+char	*ft_putbest(t_list **a, t_list **b, char *result);
 
 void	ft_putlst_fd(t_list **lst, int fd);//delete at the end
 
@@ -58,5 +58,9 @@ int		*ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 int		ft_max(int nb1, int nb2);
 
 char	*ft_cistosorted(t_list **lst, char *result);
+
+char	*ft_executemoves(t_list **a, t_list **b, char *result, int *moves);
+char	*ft_executerr(t_list **a, t_list **b, char *result, int *moves);
+char	*ft_executerrr(t_list **a, t_list **b, char *result, int *moves);
 
 #endif

@@ -9,7 +9,7 @@ int		ft_ra_iselse(t_list *tempra, t_list *tempa);
 void	ft_get_nb_rra(t_list **rra, t_list **a);
 
 	//this is about ONE SINGLE MOVE
-int ft_putbest(t_list **a, t_list **b, char *result)
+char	*ft_putbest(t_list **a, t_list **b, char *result)
 {
 	t_list	**ra;
 	t_list	**rra;
@@ -24,7 +24,7 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 	if (ra == NULL || rra == NULL || rb == NULL || rrb == NULL)
 	{
 		ft_putbest_free(ra, rra, rb, rrb);
-		return (0);
+		return (NULL);
 	}
 	ft_get_nb_ra(ra, a);
 	ft_get_nb_rra(rra, a);
@@ -37,7 +37,7 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 	if (!moves)
 	{
 		ft_putbest_free(ra, rra, rb, rrb);
-		return (0);
+		return (NULL);
 	}
 	//moves = ft_executemoves(result,);
 	//split move execute function in rx and rrx (since ra and or rb)
@@ -76,9 +76,12 @@ int ft_putbest(t_list **a, t_list **b, char *result)
 		//append the instructions to the instructions strings
 			//possibly modify first if possible to optimize by 2 sides singel instruction moves
 	//execute the best one
+
+	result = ft_executemoves(a, b, result, moves);
+
 	ft_putbest_free(ra, rra, rb, rrb);
 	free(moves);
-	return (1);
+	return (result);
 }
 
 char	*ft_executemoves(t_list **a, t_list **b, char *result, int *moves)
@@ -94,13 +97,13 @@ char	*ft_executemoves(t_list **a, t_list **b, char *result, int *moves)
 		while (result != NULL && moves[2]--)
 			result = ft_rotatesave(b, result, "rb\n\0");
 		if (result != NULL)
-		result = ft_pushsave(b, a, result, "pa\n\0");
+			result = ft_pushsave(b, a, result, "pa\n\0");
 		while (result != NULL && moves[3]--)
 			result = ft_rotatesave(b, result, "rrb\n\0");
 		while (result != NULL && moves[2]--)
 			result = ft_rotatesave(b, result, "rb\n\0");
 	}
-	free(moves);
+	//free(moves);
 	return (result);
 }
 

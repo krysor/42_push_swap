@@ -9,6 +9,9 @@ void	ft_push(t_list **src, t_list **dst)
 	temp = *src;
 	*src = (*src)->next;
 	ft_lstadd_front(dst, temp);
+	//delete if not working
+	//if (ft_lstsize(*src) == 0)
+	//	*src = NULL;
 }
 
 char	*ft_pushsave(t_list **src, t_list **dst, char *result, char *str)
