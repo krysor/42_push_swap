@@ -18,8 +18,13 @@ char	*ft_solve(t_list **a)
 	b = ft_lstinit();
 	if (result == NULL || b == NULL)
 		ft_solve_exit(a, b, result);
-
-	if (ft_iscis(a))
+	if (ft_issorted(a))
+	{
+		free(b);
+		return (result);
+	}
+	printf("is a cis: %d\n", ft_iscis(a));
+	if (ft_iscis(a))//check for is sorted before
 	{
 		result = ft_cistosorted(a, result);
 		ft_lstclear(a, (void *)free);
@@ -47,7 +52,7 @@ char	*ft_solve(t_list **a)
 		result = ft_cistosorted(a, result);
 		//break ;
 	}
-	//printf("result: %s_____________________\n", result);
+	printf("a at the end: \n");
 	ft_putlst_fd(a, 1);
 
 	ft_lstclear(a, (void *)free);

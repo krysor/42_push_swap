@@ -31,8 +31,9 @@ t_list	**ft_parse(int argc, char *argv[])
 	printf("arr start:\n");
 	ft_putarr_fd(arr, 1);//DELETE AT THE END
 	printf("arr end;\n");
-	printf("_________________________\n");
+	printf("_______________________\n");
 	lst = ft_atolst(arr, argc);
+	printf("start a:\n");
 	ft_putlst_fd(lst, 1);//DELETE AT THE END
 	if (argc == 2)
 		ft_freearr(arr);
