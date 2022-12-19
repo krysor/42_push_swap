@@ -77,6 +77,7 @@ static int	ft_getnbmoves(t_list *tempra, t_list *temprra, t_list *temprb, t_list
 	rarrb = *(int *)(tempra->content) + *(int *)(temprrb->content);
 	rrarb = *(int *)(temprra->content) + *(int *)(temprb->content);
 	rrarrb = ft_max(*(int *)(temprra->content), *(int *)(temprrb->content));
+	//printf("rarb: %d\nrarrb: %d\nrrarb: %d\nrrarrb: %d\n", rarb, rarrb, rrarb, rrarrb);
 	if (rarb <= rarrb && rarb <= rrarb && rarb <= rrarrb)
 		return (rarb);
 	else if (rarrb <= rarb && rarrb <= rrarb && rarrb <= rrarrb)

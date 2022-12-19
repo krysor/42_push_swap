@@ -63,4 +63,6 @@ char	*ft_executemoves(t_list **a, t_list **b, char *result, int *moves);
 char	*ft_executerr(t_list **a, t_list **b, char *result, int *moves);
 char	*ft_executerrr(t_list **a, t_list **b, char *result, int *moves);
 
+char	*ft_swapsave(t_list **lst, char *result, char *str);
+
 #endif

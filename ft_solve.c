@@ -34,6 +34,12 @@ char	*ft_solve(t_list **a)
 	}	
 
 	result = ft_pushallbutxtob(a, b, 3, result);//for final version leave 2 elements in a
+
+	if (!ft_iscis(a))
+		result = ft_swapsave(a, result, "sa\n\0");
+
+	//presort function for 2/3
+
 	if (!result)
 		ft_solve_exit(a, b, result);
 
