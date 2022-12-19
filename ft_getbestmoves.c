@@ -3,6 +3,7 @@
 static int	*ft_savebestmoves(t_list *ra, t_list *rra, t_list *rb, t_list *rrb);
 static int	ft_getnbleastmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 static int	ft_getnbmoves(t_list *ra, t_list *rra, t_list *rb, t_list *rrb);
+static int	ft_one(int nb);
 
 int	*ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
 {
@@ -56,6 +57,8 @@ static int	ft_getnbleastmoves(t_list **ra, t_list **rra, t_list **rb, t_list **r
 	least_moves = ft_getnbmoves(tempra, temprra, temprb, temprrb);
 	while (tempra)
 	{
+		//printf("ft_getnbmoves: %d_______________\n", ft_getnbmoves(tempra, temprra, temprb, temprrb));
+		//possibly not good to call the ft_getnbmoves again here cause some values negative
 		if (ft_getnbmoves(tempra, temprra, temprb, temprrb) < least_moves)
 			least_moves = ft_getnbmoves(tempra, temprra, temprb, temprrb);
 		tempra = tempra->next;
@@ -66,6 +69,8 @@ static int	ft_getnbleastmoves(t_list **ra, t_list **rra, t_list **rb, t_list **r
 	return (least_moves);
 }
 
+//fault sits in this function: it doesnt recognize negative values
+/*
 static int	ft_getnbmoves(t_list *tempra, t_list *temprra, t_list *temprb, t_list *temprrb)
 {
 	int	rarb;
@@ -77,7 +82,35 @@ static int	ft_getnbmoves(t_list *tempra, t_list *temprra, t_list *temprb, t_list
 	rarrb = *(int *)(tempra->content) + *(int *)(temprrb->content);
 	rrarb = *(int *)(temprra->content) + *(int *)(temprb->content);
 	rrarrb = ft_max(*(int *)(temprra->content), *(int *)(temprrb->content));
+	printf("rarb: %d\nrarrb: %d\nrrarb: %d\nrrarrb: %d\n", rarb, rarrb, rrarb, rrarrb);
+	if (*(int *)(tempra->content) != -1 && *(int *)(temprb->content) != -1
+		&& rarb <= rarrb && rarb <= rrarb && rarb <= rrarrb)
+		return (rarb);
+	else if (*(int *)(tempra->content) != -1 && *(int *)(temprrb->content) != -1
+		&& rarrb <= rarb && rarrb <= rrarb && rarrb <= rrarrb)
+		return (rarrb);
+	else if (*(int *)(temprra->content) != -1 && *(int *)(temprb->content) != -1
+		&& rrarb <= rarb && rrarb <= rarrb && rrarb <= rrarrb)
+		return (rrarb);
+	else//if (rrarrb <= rarb && rrarrb <= rarrb && rrarrb <= rrarb)
+		return (rrarrb);
+}
+*/
+
+//this is not the final version unless I managed to fix the rr +rrr bugs
+static int	ft_getnbmoves(t_list *tempra, t_list *temprra, t_list *temprb, t_list *temprrb)
+{
+	int	rarb;
+	int	rarrb;
+	int	rrarb;
+	int	rrarrb;
+	
+	rarb = ft_max(ft_one(*(int *)(tempra->content)), ft_one(*(int *)(temprb->content)));
+	rarrb = ft_one(*(int *)(tempra->content)) + ft_one(*(int *)(temprrb->content));
+	rrarb = ft_one(*(int *)(temprra->content)) + ft_one(*(int *)(temprb->content));
+	rrarrb = ft_max(ft_one(*(int *)(temprra->content)), ft_one(*(int *)(temprrb->content)));
 	//printf("rarb: %d\nrarrb: %d\nrrarb: %d\nrrarrb: %d\n", rarb, rarrb, rrarb, rrarrb);
+	//printf("something: %d\n", INT_MAX/2 + INT_MAX/2);
 	if (rarb <= rarrb && rarb <= rrarb && rarb <= rrarrb)
 		return (rarb);
 	else if (rarrb <= rarb && rarrb <= rrarb && rarrb <= rrarrb)
@@ -86,4 +119,11 @@ static int	ft_getnbmoves(t_list *tempra, t_list *temprra, t_list *temprb, t_list
 		return (rrarb);
 	else//if (rrarrb <= rarb && rrarrb <= rarrb && rrarrb <= rrarb)
 		return (rrarrb);
+}
+
+static int	ft_one(int nb)
+{
+	if (nb == -1)
+		return (INT_MAX / 2);
+	return (nb);
 }

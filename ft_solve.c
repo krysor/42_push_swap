@@ -44,13 +44,14 @@ char	*ft_solve(t_list **a)
 		ft_solve_exit(a, b, result);
 
 	//int i = 0;//delete later
-	while (ft_lstsize(*b) != 0)//!ft_issorted(a)) && !ft_iscis(a)+ add the necessary conditions
+	while (ft_lstsize(*b) != 0)// && i < 4)//!ft_issorted(a)) && !ft_iscis(a)+ add the necessary conditions
 	{
 		result = ft_putbest(a, b, result); 
 		if (result == NULL)
 			ft_solve_exit(a, b, result);
 		//i++;
 	}
+	//exit(0);
 	//printf("result: %s_____________________\n", result);
 
 	if (ft_lstsize(*b) == 0 && ft_iscis(a))

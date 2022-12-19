@@ -43,7 +43,7 @@ char	*ft_putbest(t_list **a, t_list **b, char *result)
 	//split move execute function in rx and rrx (since ra and or rb)
 
 	/*
-		printf("a: \n");
+	printf("a: \n");
 	ft_putlst_fd(a, 1);
 	printf("b: \n");
 	ft_putlst_fd(b, 1);
@@ -64,6 +64,8 @@ char	*ft_putbest(t_list **a, t_list **b, char *result)
 		i++;
 	}
 	*/
+
+	
 
 
 	//calculate which should get put first//done
@@ -131,6 +133,7 @@ char	*ft_executerr(t_list **a, t_list **b, char *result, int *moves)
 
 char	*ft_executerrr(t_list **a, t_list **b, char *result, int *moves)
 {
+	//printf("before 1st loop:\nmoves[3]: %d\nmoves[1]: %d\n", moves[3], moves[1]);
 	while (result != NULL && moves[1] && moves[3])
 	{
 		result = ft_revrotatesave(a, result, "rrr\n\0");
@@ -138,6 +141,7 @@ char	*ft_executerrr(t_list **a, t_list **b, char *result, int *moves)
 		moves[1]--;
 		moves[3]--;
 	}
+	//printf("after 1st loop:\nmoves[3]: %d\nmoves[1]: %d\n", moves[3], moves[1]);
 	while (result != NULL && moves[3]--)
 		result = ft_revrotatesave(b, result, "rrb\n\0");
 	while (result != NULL && moves[1]--)
