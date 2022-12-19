@@ -54,8 +54,13 @@ char	*ft_cistosorted(t_list **lst, char *result)
 	}
 	if (tie < ft_lstsize(*lst) / 2)
 	{
-		while (result != NULL && !ft_issorted(lst))
+		//printf("here?____________________\n");
+		ft_putlst_fd(lst, 1);
+		while (result != NULL && !ft_issorted(lst))//this one loops because the sorting doesnt work properly
+		{
 			result = ft_rotatesave(lst, result, "ra\n\0");
+			//printf("loop?____________________\n");
+		}
 	}	
 	else
 	{

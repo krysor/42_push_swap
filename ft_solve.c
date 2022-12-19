@@ -28,7 +28,7 @@ char	*ft_solve(t_list **a)
 		return (result);
 	}	
 
-	result = ft_pushallbutxtob(a, b, 2, result);//for final version leave 2 elements in a
+	result = ft_pushallbutxtob(a, b, 3, result);//for final version leave 2 elements in a
 	if (!result)
 		ft_solve_exit(a, b, result);
 
@@ -40,12 +40,15 @@ char	*ft_solve(t_list **a)
 			ft_solve_exit(a, b, result);
 		//i++;
 	}
+	//printf("result: %s_____________________\n", result);
 
 	if (ft_lstsize(*b) == 0 && ft_iscis(a))
 	{
 		result = ft_cistosorted(a, result);
 		//break ;
 	}
+	//printf("result: %s_____________________\n", result);
+	ft_putlst_fd(a, 1);
 
 	ft_lstclear(a, (void *)free);
 	ft_lstclear(b, (void *)free);
