@@ -42,8 +42,8 @@ char	*ft_putbest(t_list **a, t_list **b, char *result)
 	//moves = ft_executemoves(result,);
 	//split move execute function in rx and rrx (since ra and or rb)
 
-	
-	printf("a: \n");
+	/*
+		printf("a: \n");
 	ft_putlst_fd(a, 1);
 	printf("b: \n");
 	ft_putlst_fd(b, 1);
@@ -63,6 +63,8 @@ char	*ft_putbest(t_list **a, t_list **b, char *result)
 		printf("arr[%d]: %d\n", i, moves[i]);
 		i++;
 	}
+	*/
+
 
 	//calculate which should get put first//done
 		//calculate how many instructions of each type for each//done

@@ -71,7 +71,7 @@ char	*ft_cistosorted(t_list **lst, char *result)
 		while (result != NULL && !ft_issorted(lst))
 			result = ft_revrotatesave(lst, result, "rra\n\0");
 	}
-	printf("a inside cistosorted before return\n");
-	ft_putlst_fd(lst, 1);
+	//printf("a inside cistosorted before return\n");
+	//ft_putlst_fd(lst, 1);
 	return (result);
 }

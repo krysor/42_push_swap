@@ -6,7 +6,7 @@ static int		ft_atolst_iserr(t_list **lst, int i);
 static void		ft_freearr(char **arr);
 
 //DELETE AT THE END:
-static void		ft_putarr_fd(char **arr, int fd);
+//static void		ft_putarr_fd(char **arr, int fd);
 //static void		ft_putlst_fd(t_list **lst, int fd);
 //static void		ft_putcontent_fd(void *content);
 
@@ -28,13 +28,13 @@ t_list	**ft_parse(int argc, char *argv[])
     }
 	else
 		arr = argv + 1;
-	printf("arr start:\n");
-	ft_putarr_fd(arr, 1);//DELETE AT THE END
-	printf("arr end;\n");
-	printf("_______________________\n");
+	//printf("arr start:\n");
+	//ft_putarr_fd(arr, 1);//DELETE AT THE END
+	//printf("arr end;\n");
+	//printf("_______________________\n");
 	lst = ft_atolst(arr, argc);
-	printf("start a:\n");
-	ft_putlst_fd(lst, 1);//DELETE AT THE END
+	//printf("start a:\n");
+	//ft_putlst_fd(lst, 1);//DELETE AT THE END
 	if (argc == 2)
 		ft_freearr(arr);
 	return (lst);
@@ -107,6 +107,7 @@ static void	ft_freearr(char **arr)
 	free(arr);
 }
 
+/*
 static void	ft_putarr_fd(char **arr, int fd)//delete at the end
 {
 	int	i;
@@ -118,4 +119,4 @@ static void	ft_putarr_fd(char **arr, int fd)//delete at the end
 		ft_putchar_fd('\n', fd);
 		i++;
 	}
-}
+}*/
