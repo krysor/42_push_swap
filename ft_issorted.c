@@ -16,7 +16,7 @@ int	ft_issorted(t_list **lst)
 	return (1);
 }
 
-int	ft_iscis(t_list **lst)//this one doesnt work correctly
+int	ft_iscis(t_list **lst)
 {
 	t_list	*temp;
 	int		p;
@@ -58,20 +58,21 @@ char	*ft_cistosorted(t_list **lst, char *result)
 	}
 	if (tie < ft_lstsize(*lst) / 2)
 	{
-		//printf("here?____________________\n");
-		//ft_putlst_fd(lst, 1);
-		while (result != NULL && !ft_issorted(lst))//this one loops because the sorting doesnt work properly
+		while (result != NULL && !ft_issorted(lst))
 		{
 			result = ft_rotatesave(lst, result, "ra\n\0");
-			//printf("loop?____________________\n");
+			if (!result)
+				return (NULL);
 		}
 	}	
 	else
 	{
 		while (result != NULL && !ft_issorted(lst))
+		{
 			result = ft_revrotatesave(lst, result, "rra\n\0");
+			if (!result)
+				return (NULL);
+		}	
 	}
-	//printf("a inside cistosorted before return\n");
-	//ft_putlst_fd(lst, 1);
 	return (result);
 }

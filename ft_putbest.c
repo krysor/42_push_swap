@@ -8,7 +8,6 @@ int		ft_ra_iszero(t_list *tempra, t_list **a);
 int		ft_ra_iselse(t_list *tempra, t_list *tempa);
 void	ft_get_nb_rra(t_list **rra, t_list **a);
 
-	//this is about ONE SINGLE MOVE
 char	*ft_putbest(t_list **a, t_list **b, char *result)
 {
 	t_list	**ra;
@@ -30,59 +29,15 @@ char	*ft_putbest(t_list **a, t_list **b, char *result)
 	ft_get_nb_rra(rra, a);
 	ft_get_nb_rb(rb);
 	ft_get_nb_rrb(rrb);
-	(void)b;
-	(void)result;
 	ft_setbestmoves(ra, rra, rb, rrb);
 	moves = ft_getbestmoves(ra, rra, rb, rrb);
 	if (!moves)
 	{
 		ft_putbest_free(ra, rra, rb, rrb);
+		free(result);
 		return (NULL);
 	}
-	//moves = ft_executemoves(result,);
-	//split move execute function in rx and rrx (since ra and or rb)
-
-	/*
-	printf("a: \n");
-	ft_putlst_fd(a, 1);
-	printf("b: \n");
-	ft_putlst_fd(b, 1);
-	printf("ra after\n");
-	ft_putlst_fd(ra, 1);
-	printf("rra after\n");
-	ft_putlst_fd(rra, 1);
-	printf("rb after\n");
-	ft_putlst_fd(rb, 1);
-	printf("rrb after\n");
-	ft_putlst_fd(rrb, 1);
-	
-	printf("show moves: \n");
-	int	i = 0;
-	while (i < 4)
-	{
-		printf("arr[%d]: %d\n", i, moves[i]);
-		i++;
-	}
-	*/
-
-	
-
-
-	//calculate which should get put first//done
-		//calculate how many instructions of each type for each//done
-			//get the information//done
-				//how many moves in a//done
-				//how many moves in b//done
-				//magic 2x2 table//done
-			//calculate each information//done
-		//choose the best one//done
-			//iterate over data structure and save the current best choice//done
-		//append the instructions to the instructions strings
-			//possibly modify first if possible to optimize by 2 sides singel instruction moves
-	//execute the best one
-
 	result = ft_executemoves(a, b, result, moves);
-
 	ft_putbest_free(ra, rra, rb, rrb);
 	free(moves);
 	return (result);
@@ -107,7 +62,6 @@ char	*ft_executemoves(t_list **a, t_list **b, char *result, int *moves)
 		if (result != NULL)
 			result = ft_pushsave(b, a, result, "pa\n\0");
 	}
-	//free(moves);
 	return (result);
 }
 
@@ -133,7 +87,6 @@ char	*ft_executerr(t_list **a, t_list **b, char *result, int *moves)
 
 char	*ft_executerrr(t_list **a, t_list **b, char *result, int *moves)
 {
-	//printf("before 1st loop:\nmoves[3]: %d\nmoves[1]: %d\n", moves[3], moves[1]);
 	while (result != NULL && moves[1] && moves[3])
 	{
 		result = ft_revrotatesave(a, result, "rrr\n\0");
@@ -141,7 +94,6 @@ char	*ft_executerrr(t_list **a, t_list **b, char *result, int *moves)
 		moves[1]--;
 		moves[3]--;
 	}
-	//printf("after 1st loop:\nmoves[3]: %d\nmoves[1]: %d\n", moves[3], moves[1]);
 	while (result != NULL && moves[3]--)
 		result = ft_revrotatesave(b, result, "rrb\n\0");
 	while (result != NULL && moves[1]--)

@@ -46,7 +46,7 @@ void	ft_get_nb_rra(t_list **rra, t_list **a)
 	}
 }
 
-int	ft_ra_iszero(t_list *tempra, t_list **a)
+int	ft_ra_iszero(t_list *tempra, t_list **a)//split for readability
 {
 	if (ft_lstsize(*a) == 1 || (ft_issorted(a) &&
 		(*(int *)(tempra->content) < *(int *)((*a)->content)
@@ -57,7 +57,7 @@ int	ft_ra_iszero(t_list *tempra, t_list **a)
 	return (0);
 }
 
-int	ft_ra_iselse(t_list *tempra, t_list *tempa)
+int	ft_ra_iselse(t_list *tempra, t_list *tempa)//split for readability
 {
 	if (tempa->next != NULL && ((*(int *)(tempa->content) < *(int *)(tempra->content)
 		&& *(int *)(tempra->content) < *(int *)((tempa->next)->content))

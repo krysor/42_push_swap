@@ -5,11 +5,6 @@ static void		ft_atolst_exit(char **arr, int	argc, t_list **lst, void *content);
 static int		ft_atolst_iserr(t_list **lst, int i);
 static void		ft_freearr(char **arr);
 
-//DELETE AT THE END:
-//static void		ft_putarr_fd(char **arr, int fd);
-//static void		ft_putlst_fd(t_list **lst, int fd);
-//static void		ft_putcontent_fd(void *content);
-
 t_list	**ft_parse(int argc, char *argv[])
 {
 	char	**arr;
@@ -28,13 +23,7 @@ t_list	**ft_parse(int argc, char *argv[])
     }
 	else
 		arr = argv + 1;
-	//printf("arr start:\n");
-	//ft_putarr_fd(arr, 1);//DELETE AT THE END
-	//printf("arr end;\n");
-	//printf("_______________________\n");
 	lst = ft_atolst(arr, argc);
-	//printf("start a:\n");
-	//ft_putlst_fd(lst, 1);//DELETE AT THE END
 	if (argc == 2)
 		ft_freearr(arr);
 	return (lst);
@@ -48,9 +37,6 @@ static t_list	**ft_atolst(char **arr, int	argc)
 
 	i = 0;
 	lst = ft_lstinit();
-	//lst = (t_list **)malloc(sizeof(t_list *));
-	//if (lst != NULL)
-	//	*lst = NULL;
 	while (arr[i] != NULL)
 	{	
 		if (lst != NULL)
@@ -75,17 +61,11 @@ static int	ft_atolst_iserr(t_list **lst, int i)
 
 static void ft_atolst_exit(char **arr, int	argc, t_list **lst, void *content)
 {
-	//int	p;
-	
 	if (argc == 2)
 		ft_freearr(arr);
 	if (content != NULL && *(int *)(ft_lstlast(*lst)->content) != *(int *)content)
 		free(content);
-	//if (lst != NULL)
-	//	p = 1;
 	ft_lstclear(lst, (void *)free);
-	//if (p)
-	//	free(lst);
 	ft_putstr_fd("Error\n", 2);
 	exit(-1);
 }

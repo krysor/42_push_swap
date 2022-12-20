@@ -18,7 +18,7 @@ char	*ft_rotatesave(t_list **lst, char *result, char *str)
 
 	ft_rotate(lst);
 	new_str = ft_strjoin(result, str);
-	//free(result); //this gives a double free
+	free(result);//this gives a double free
 	if (!new_str)
 		return (NULL);
 	return (new_str);

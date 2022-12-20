@@ -23,22 +23,23 @@ char	*ft_solve(t_list **a)
 		free(b);
 		return (result);
 	}
-	//printf("is a cis: %d\n", ft_iscis(a));
-	if (ft_iscis(a))//check for is sorted before
+	if (ft_iscis(a))
 	{
 		result = ft_cistosorted(a, result);
+		if (!result)
+			ft_solve_exit(a, b, result);
 		ft_lstclear(a, (void *)free);
 		ft_lstclear(b, (void *)free);
 		free(b);
 		return (result);
 	}	
 
-	result = ft_pushallbutxtob(a, b, 3, result);//for final version leave 2 elements in a
+	result = ft_pushallbutxtob(a, b, 3, result);
+	if (!result)
+		ft_solve_exit(a, b, result);
 
 	if (!ft_iscis(a))
 		result = ft_swapsave(a, result, "sa\n\0");
-
-	//presort function for 2/3
 
 	if (!result)
 		ft_solve_exit(a, b, result);
@@ -47,20 +48,16 @@ char	*ft_solve(t_list **a)
 	while (ft_lstsize(*b) != 0)// && i < 4)//!ft_issorted(a)) && !ft_iscis(a)+ add the necessary conditions
 	{
 		result = ft_putbest(a, b, result); 
-		if (result == NULL)
+		if (!result)
 			ft_solve_exit(a, b, result);
 		//i++;
 	}
-	//exit(0);
-	//printf("result: %s_____________________\n", result);
 
-	if (ft_lstsize(*b) == 0 && ft_iscis(a))
-	{
+	if (!ft_issorted(a))
 		result = ft_cistosorted(a, result);
-		//break ;
-	}
-	//printf("a at the end: \n");
-	//ft_putlst_fd(a, 1);
+
+	if (!result)
+		ft_solve_exit(a, b, result);
 
 	ft_lstclear(a, (void *)free);
 	ft_lstclear(b, (void *)free);
@@ -70,7 +67,7 @@ char	*ft_solve(t_list **a)
 
 char	*ft_pushallbutxtob(t_list **src, t_list **dst, int x, char *result)
 {
-	int	i;
+	int		i;
 	char	*new_result;
 	
 	i = ft_lstsize(*src);
