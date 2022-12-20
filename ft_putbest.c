@@ -31,6 +31,7 @@ char	*ft_putbest(t_list **a, t_list **b, char *result)
 	ft_get_nb_rrb(rrb);
 	ft_setbestmoves(ra, rra, rb, rrb);
 	moves = ft_getbestmoves(ra, rra, rb, rrb);
+
 	if (!moves)
 	{
 		ft_putbest_free(ra, rra, rb, rrb);

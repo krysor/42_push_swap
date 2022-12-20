@@ -22,7 +22,7 @@ int	ft_iscis(t_list **lst)
 	int		p;
 	int		first;
 	
-	if (ft_lstsize(*lst) <= 1)
+	if (ft_lstsize(*lst) <= 1 || ft_issorted(lst))
 		return (1);
 	temp = *lst;
 	first = *(int *)(temp->content);

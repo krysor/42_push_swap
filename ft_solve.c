@@ -18,11 +18,13 @@ char	*ft_solve(t_list **a)
 	b = ft_lstinit();
 	if (result == NULL || b == NULL)
 		ft_solve_exit(a, b, result);
+	
 	if (ft_issorted(a))
 	{
 		free(b);
 		return (result);
 	}
+		
 	if (ft_iscis(a))
 	{
 		result = ft_cistosorted(a, result);
@@ -35,6 +37,7 @@ char	*ft_solve(t_list **a)
 	}	
 
 	result = ft_pushallbutxtob(a, b, 3, result);
+	
 	if (!result)
 		ft_solve_exit(a, b, result);
 
