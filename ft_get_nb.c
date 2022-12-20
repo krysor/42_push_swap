@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_nb.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/20 13:11:55 by kkaczoro          #+#    #+#             */
+/*   Updated: 2022/12/20 13:16:22 by kkaczoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_get_nb_ra(t_list **ra, t_list **a)
@@ -48,8 +60,8 @@ void	ft_get_nb_rra(t_list **rra, t_list **a)
 
 int	ft_ra_iszero(t_list *tempra, t_list **a)//split for readability
 {
-	if (ft_lstsize(*a) == 1 || (ft_issorted(a) &&
-		(*(int *)(tempra->content) < *(int *)((*a)->content)
+	if (ft_lstsize(*a) == 1 || (ft_issorted(a)
+			&& (*(int *)(tempra->content) < *(int *)((*a)->content)
 		|| *(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content)))
 		|| (*(int *)(tempra->content) < *(int *)((*a)->content)
 		&& *(int *)(tempra->content) > *(int *)(ft_lstlast((*a))->content)))
@@ -59,7 +71,8 @@ int	ft_ra_iszero(t_list *tempra, t_list **a)//split for readability
 
 int	ft_ra_iselse(t_list *tempra, t_list *tempa)//split for readability
 {
-	if (tempa->next != NULL && ((*(int *)(tempa->content) < *(int *)(tempra->content)
+	if (tempa->next != NULL
+		&& ((*(int *)(tempa->content) < *(int *)(tempra->content)
 		&& *(int *)(tempra->content) < *(int *)((tempa->next)->content))
 		|| (*(int *)(tempa->content) > *(int *)((tempa->next)->content)
 		&& ((*(int *)(tempra->content) < *(int *)(tempa->content)
