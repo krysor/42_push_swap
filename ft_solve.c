@@ -88,7 +88,7 @@ static char	*ft_pballbutx(t_list **src, t_list **dst, int x, char *result)
 	new_result = result;
 	while (i > x)
 	{	
-		new_result = ft_pushsave(src, dst, new_result, "pb\n\0");
+		new_result = ft_savepush(src, dst, new_result, "pb\n\0");
 		if (!new_result)
 			return (NULL);
 		i--;

@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_nb.c                                        :+:      :+:    :+:   */
+/*   ft_get_nb_ra.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 13:11:55 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/20 13:16:22 by kkaczoro         ###   ########.fr       */
+/*   Created: 2022/12/20 17:51:11 by kkaczoro          #+#    #+#             */
+/*   Updated: 2022/12/20 17:54:25 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	ft_ra_iszero(t_list *tempra, t_list **a);
+static int	ft_ra_iselse(t_list *tempra, t_list *tempa);
 
 void	ft_get_nb_ra(t_list **ra, t_list **a)
 {
@@ -42,23 +45,7 @@ void	ft_get_nb_ra(t_list **ra, t_list **a)
 	}
 }
 
-void	ft_get_nb_rra(t_list **rra, t_list **a)
-{
-	int		n;
-	t_list	*temprra;
-
-	ft_get_nb_ra(rra, a);
-	n = ft_lstsize(*a);
-	temprra = *rra;
-	while (temprra)
-	{
-		if (*(int *)(temprra->content))
-			*(int *)(temprra->content) = n - *(int *)(temprra->content);
-		temprra = temprra->next;
-	}
-}
-
-int	ft_ra_iszero(t_list *tempra, t_list **a)//split for readability
+static int	ft_ra_iszero(t_list *tempra, t_list **a)//split for readability
 {
 	if (ft_lstsize(*a) == 1 || (ft_issorted(a)
 			&& (*(int *)(tempra->content) < *(int *)((*a)->content)
@@ -69,7 +56,7 @@ int	ft_ra_iszero(t_list *tempra, t_list **a)//split for readability
 	return (0);
 }
 
-int	ft_ra_iselse(t_list *tempra, t_list *tempa)//split for readability
+static int	ft_ra_iselse(t_list *tempra, t_list *tempa)//split for readability
 {
 	if (tempa->next != NULL
 		&& ((*(int *)(tempa->content) < *(int *)(tempra->content)
@@ -81,35 +68,4 @@ int	ft_ra_iselse(t_list *tempra, t_list *tempa)//split for readability
 		&& *(int *)(tempra->content) > *(int *)((tempa->next)->content))))))
 		return (1);
 	return (0);
-}
-
-void	ft_get_nb_rb(t_list **rb)
-{
-	t_list	*temp;
-	int		i;
-
-	i = 0;
-	temp = *rb;
-	while (temp)
-	{
-		*(int *)(temp->content) = i;
-		i++;
-		temp = temp->next;
-	}
-}
-
-void	ft_get_nb_rrb(t_list **rrb)
-{
-	t_list	*temp;
-	int		i;
-
-	i = ft_lstsize(*rrb);
-	temp = *rrb;
-	while (temp)
-	{
-		*(int *)(temp->content) = i;
-		i--;
-		temp = temp->next;
-	}
-	*(int *)((*rrb)->content) = 0;
 }

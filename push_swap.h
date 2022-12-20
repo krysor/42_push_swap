@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:42:19 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/20 17:10:01 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:52:36 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,20 @@ void	*ft_atopi(char *str);
 
 char	*ft_solve(t_list **a);
 
+t_list	**ft_lstdup(t_list **lst);
+
 int		ft_issorted(t_list **lst);
 int		ft_iscis(t_list **lst);
 char	*ft_cistosorted(t_list **lst, char *result);
 
 char	*ft_saveswap(t_list **lst, char *result, char *str);
+char	*ft_savepush(t_list **src, t_list **dst, char *result, char *str);
 
+void	ft_get_nb_rb(t_list **rb);
+void	ft_get_nb_rrb(t_list **rrb);
+void	ft_get_nb_ra(t_list **ra, t_list **a);
+void	ft_get_nb_rra(t_list **rra, t_list **a);
 
-t_list	**ft_lstdup(t_list **lst);
-
-t_list	**ft_lstdouble(t_list **lst);
-
-void	*ft_contdup(void *content);
-
-void	ft_push(t_list **src, t_list **dst);
-char	*ft_pushsave(t_list **src, t_list **dst, char *result, char *str);
 void	ft_rotate(t_list **lst);
 char	*ft_rotatesave(t_list **lst, char *result, char *str);
 void	ft_revrotate(t_list **lst);
@@ -47,15 +46,9 @@ char	*ft_putbest(t_list **a, t_list **b, char *result);
 
 void	ft_putlst_fd(t_list **lst, int fd);//delete at the end
 
-void	ft_get_nb_rb(t_list **rb);
-void	ft_get_nb_rrb(t_list **rrb);
-void	ft_get_nb_ra(t_list **ra, t_list **a);
-int		ft_ra_iszero(t_list *tempra, t_list **a);
-int		ft_ra_iselse(t_list *tempra, t_list *tempa);
-void	ft_get_nb_rra(t_list **rra, t_list **a);
+
 
 void	ft_setbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
-void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 int		*ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 int		ft_max(int nb1, int nb2);
 

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/20 13:08:20 by kkaczoro          #+#    #+#             */
+/*   Updated: 2022/12/20 17:21:33 by kkaczoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void 	*ft_contdup(void *content);
+static void	*ft_contdup(void *content);
 
-t_list **ft_lstdup(t_list **lst)
+t_list	**ft_lstdup(t_list **lst)
 {
 	t_list	**dup;
 	t_list	*temp;
@@ -19,7 +31,7 @@ t_list **ft_lstdup(t_list **lst)
 	{
 		content = ft_contdup(temp->content);
 		ft_lstadd_back(dup, ft_lstnew(content));
-		if (content == NULL || content != ft_lstlast(*dup)->content) 
+		if (content == NULL || content != ft_lstlast(*dup)->content)
 		{
 			ft_lstclear(dup, (void *)free);
 			free(content);
@@ -28,5 +40,18 @@ t_list **ft_lstdup(t_list **lst)
 		}
 		temp = temp->next;
 	}
+	return (dup);
+}
+
+static void	*ft_contdup(void *content)
+{
+	int	*dup;
+
+	if (content == NULL)
+		return (NULL);
+	dup = malloc(sizeof(content));
+	if (dup == NULL)
+		return (NULL);
+	*dup = *(int *)content;
 	return (dup);
 }

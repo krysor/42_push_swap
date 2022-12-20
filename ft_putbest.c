@@ -1,12 +1,12 @@
 #include "push_swap.h"
 
-void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
-void	ft_get_nb_rb(t_list **rb);
-void	ft_get_nb_rrb(t_list **rrb);
-void	ft_get_nb_ra(t_list **ra, t_list **a);
-int		ft_ra_iszero(t_list *tempra, t_list **a);
-int		ft_ra_iselse(t_list *tempra, t_list *tempa);
-void	ft_get_nb_rra(t_list **rra, t_list **a);
+static void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
+void		ft_get_nb_rb(t_list **rb);
+void		ft_get_nb_rrb(t_list **rrb);
+void		ft_get_nb_ra(t_list **ra, t_list **a);
+int			ft_ra_iszero(t_list *tempra, t_list **a);
+int			ft_ra_iselse(t_list *tempra, t_list *tempa);
+void		ft_get_nb_rra(t_list **rra, t_list **a);
 
 char	*ft_putbest(t_list **a, t_list **b, char *result)
 {
@@ -61,7 +61,7 @@ char	*ft_executemoves(t_list **a, t_list **b, char *result, int *moves)
 		while (result != NULL && moves[3]-- > 0)
 			result = ft_revrotatesave(b, result, "rrb\n\0");
 		if (result != NULL)
-			result = ft_pushsave(b, a, result, "pa\n\0");
+			result = ft_savepush(b, a, result, "pa\n\0");
 	}
 	return (result);
 }
@@ -80,7 +80,7 @@ char	*ft_executerr(t_list **a, t_list **b, char *result, int *moves)
 	while (result != NULL && moves[0]--)
 		result = ft_rotatesave(a, result, "ra\n\0");
 	if (result != NULL)
-		result = ft_pushsave(b, a, result, "pa\n\0");
+		result = ft_savepush(b, a, result, "pa\n\0");
 	else
 		return (NULL);
 	return (result);
@@ -100,13 +100,13 @@ char	*ft_executerrr(t_list **a, t_list **b, char *result, int *moves)
 	while (result != NULL && moves[1]--)
 		result = ft_revrotatesave(a, result, "rra\n\0");
 	if (result != NULL)
-		result = ft_pushsave(b, a, result, "pa\n\0");
+		result = ft_savepush(b, a, result, "pa\n\0");
 	else
 		return (NULL);
 	return (result);
 }
 
-void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
+static void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb)
 {
 	ft_lstclear(ra, (void *)free);
 	ft_lstclear(rra, (void *)free);
