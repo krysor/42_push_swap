@@ -2,9 +2,9 @@
 
 void	ft_get_nb_ra(t_list **ra, t_list **a)
 {
-	int	i;
-	t_list *tempa;
-	t_list *tempra;
+	int		i;
+	t_list	*tempa;
+	t_list	*tempra;
 
 	tempra = *ra;
 	while (tempra)
@@ -32,7 +32,7 @@ void	ft_get_nb_ra(t_list **ra, t_list **a)
 
 void	ft_get_nb_rra(t_list **rra, t_list **a)
 {
-	int	n;
+	int		n;
 	t_list	*temprra;
 
 	ft_get_nb_ra(rra, a);
