@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:42:19 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/20 16:16:00 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:10:01 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,28 @@
 # include "libft/libft.h" 
 # include <limits.h>
 
-#include <stdio.h>//delete at the end
+# include <stdio.h>//delete at the end
 
 t_list	**ft_parse(int argc, char *argv[]);
 void	*ft_atopi(char *str);
 
-t_list	**ft_lstinit(void);
-
-
-
-
-
 char	*ft_solve(t_list **a);
-t_list 	**ft_lstdup(t_list **lst);
+
 int		ft_issorted(t_list **lst);
 int		ft_iscis(t_list **lst);
+char	*ft_cistosorted(t_list **lst, char *result);
+
+char	*ft_saveswap(t_list **lst, char *result, char *str);
+
+
+t_list	**ft_lstdup(t_list **lst);
+
 t_list	**ft_lstdouble(t_list **lst);
 
 void	*ft_contdup(void *content);
 
-
-char	*ft_strinit(void);
-
 void	ft_push(t_list **src, t_list **dst);
 char	*ft_pushsave(t_list **src, t_list **dst, char *result, char *str);
-void	ft_swap(t_list **lst);
 void	ft_rotate(t_list **lst);
 char	*ft_rotatesave(t_list **lst, char *result, char *str);
 void	ft_revrotate(t_list **lst);
@@ -62,12 +59,9 @@ void	ft_putbest_free(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 int		*ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 int		ft_max(int nb1, int nb2);
 
-char	*ft_cistosorted(t_list **lst, char *result);
 
 char	*ft_executemoves(t_list **a, t_list **b, char *result, int *moves);
 char	*ft_executerr(t_list **a, t_list **b, char *result, int *moves);
 char	*ft_executerrr(t_list **a, t_list **b, char *result, int *moves);
-
-char	*ft_swapsave(t_list **lst, char *result, char *str);
 
 #endif

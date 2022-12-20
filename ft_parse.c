@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/20 16:17:37 by kkaczoro          #+#    #+#             */
+/*   Updated: 2022/12/20 16:25:09 by kkaczoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void		ft_freearr(char **arr);
@@ -54,7 +66,9 @@ static t_list	**ft_atolst(char **arr, int argc)
 	void	*content;
 
 	i = 0;
-	lst = ft_lstinit();
+	lst = (t_list **)malloc(sizeof(t_list *));
+	if (lst != NULL)
+		*lst = NULL;
 	while (arr[i] != NULL)
 	{	
 		if (lst != NULL)

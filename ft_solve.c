@@ -8,10 +8,13 @@ char	*ft_solve(t_list **a)
 	char	*result;
 	t_list	**b;
 	
-	result = ft_strinit();
-	b = ft_lstinit();
+	result = malloc(sizeof(char));
+	b = (t_list **)malloc(sizeof(t_list *));
 	if (result == NULL || b == NULL)
 		ft_solve_exit(a, b, result);
+	result[0] = '\0';
+	if (b != NULL)
+		*b = NULL;
 	
 	if (ft_issorted(a))
 	{
@@ -36,7 +39,7 @@ char	*ft_solve(t_list **a)
 		ft_solve_exit(a, b, result);
 
 	if (!ft_iscis(a))
-		result = ft_swapsave(a, result, "sa\n\0");
+		result = ft_saveswap(a, result, "sa\n\0");
 
 	if (!result)
 		ft_solve_exit(a, b, result);

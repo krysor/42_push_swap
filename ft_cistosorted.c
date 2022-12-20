@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_issorted.c                                      :+:      :+:    :+:   */
+/*   ft_cistosorted.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 16:45:41 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/20 16:59:03 by kkaczoro         ###   ########.fr       */
+/*   Created: 2022/12/20 16:56:10 by kkaczoro          #+#    #+#             */
+/*   Updated: 2022/12/20 16:59:23 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_issorted(t_list **lst)
+char	*ft_cistosorted(t_list **lst, char *result)
 {
 	t_list	*temp;
+	int		tie;
 
-	if (ft_lstsize(*lst) <= 1)
-		return (1);
 	temp = *lst;
+	tie = 0;
 	while (temp->next)
 	{
 		if (*(int *)(temp->content) > *(int *)((temp->next)->content))
-			return (0);
+			break ;
+		tie++;
 		temp = temp->next;
 	}
-	return (1);
+	if (tie < ft_lstsize(*lst) / 2)
+	{
+		while (result != NULL && !ft_issorted(lst))
+			result = ft_rotatesave(lst, result, "ra\n\0");
+	}	
+	else
+	{
+		while (result != NULL && !ft_issorted(lst))
+			result = ft_revrotatesave(lst, result, "rra\n\0");
+	}
+	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:05:17 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/20 15:21:08 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/20 16:21:48 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_atopi(char *str)
 {
 	long int	nb;
 	int			*content;
-	
+
 	nb = ft_atolong(str);
 	if (nb == LONG_MIN)
 		return (NULL);
