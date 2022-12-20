@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-char	*ft_strempty(void)
+char	*ft_strinit(void)
 {
 	char	*result;
 	result = malloc(sizeof(char));

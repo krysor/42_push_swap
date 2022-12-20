@@ -1,20 +1,14 @@
 #include "push_swap.h"
 
-//DELETE AT THE END:
-static void		ft_putcontent_fd(void *content);
-
-t_list	**ft_allis_init(t_list **lst);
-t_list	*ft_nodedup(t_list *node);
-
-void ft_solve_exit(t_list **a, t_list **b, char *result);
-char	*ft_pushallbutxtob(t_list **src, t_list **dst, int x, char *result);
+static void	ft_solve_exit(t_list **a, t_list **b, char *result);
+static char	*ft_pballbutx(t_list **src, t_list **dst, int x, char *result);
 
 char	*ft_solve(t_list **a)
 {
 	char	*result;
 	t_list	**b;
 	
-	result = ft_strempty();
+	result = ft_strinit();
 	b = ft_lstinit();
 	if (result == NULL || b == NULL)
 		ft_solve_exit(a, b, result);
@@ -36,7 +30,7 @@ char	*ft_solve(t_list **a)
 		return (result);
 	}	
 
-	result = ft_pushallbutxtob(a, b, 3, result);
+	result = ft_pballbutx(a, b, 3, result);
 	
 	if (!result)
 		ft_solve_exit(a, b, result);
@@ -68,7 +62,19 @@ char	*ft_solve(t_list **a)
 	return (result);
 }
 
-char	*ft_pushallbutxtob(t_list **src, t_list **dst, int x, char *result)
+static void	ft_solve_exit(t_list **a, t_list **b, char *result)
+{
+	if (result != NULL)
+		free(result);
+	ft_lstclear(a, (void *)free);
+	ft_lstclear(b, (void *)free);
+	free(a);
+	free(b);
+	ft_putstr_fd("Error\n", 2);
+	exit(-1);
+}
+
+static char	*ft_pballbutx(t_list **src, t_list **dst, int x, char *result)
 {
 	int		i;
 	char	*new_result;
@@ -87,28 +93,3 @@ char	*ft_pushallbutxtob(t_list **src, t_list **dst, int x, char *result)
 	return (new_result);
 }
 
-void ft_solve_exit(t_list **a, t_list **b, char *result)
-{
-	if (result != NULL)
-		free(result);
-	ft_lstclear(a, (void *)free);
-	ft_lstclear(b, (void *)free);
-	free(a);
-	free(b);
-	ft_putstr_fd("Error\n", 2);
-	exit(-1);
-}
-
-void	ft_putlst_fd(t_list **lst, int fd)//delete at the end
-{	
-	ft_putstr_fd("putlst start:\n", fd);
-	ft_lstiter(*lst, (void *)ft_putcontent_fd);
-	ft_putstr_fd("putlst end;\n", fd);
-	ft_putstr_fd("_______________________\n", fd);
-}
-
-static void	ft_putcontent_fd(void *content)//delete at the end
-{
-	ft_putnbr_fd(*(int *)content, 1);
-	ft_putchar_fd('\n', 1);
-}

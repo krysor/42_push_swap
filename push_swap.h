@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:42:19 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/05/18 15:50:17 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/20 16:16:00 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@
 
 t_list	**ft_parse(int argc, char *argv[]);
 void	*ft_atopi(char *str);
-int		ft_isdup(t_list **lst);
+
+t_list	**ft_lstinit(void);
+
+
+
+
+
 char	*ft_solve(t_list **a);
 t_list 	**ft_lstdup(t_list **lst);
 int		ft_issorted(t_list **lst);
@@ -29,7 +35,8 @@ t_list	**ft_lstdouble(t_list **lst);
 
 void	*ft_contdup(void *content);
 
-t_list	**ft_lstinit(void);
+
+char	*ft_strinit(void);
 
 void	ft_push(t_list **src, t_list **dst);
 char	*ft_pushsave(t_list **src, t_list **dst, char *result, char *str);
@@ -38,8 +45,6 @@ void	ft_rotate(t_list **lst);
 char	*ft_rotatesave(t_list **lst, char *result, char *str);
 void	ft_revrotate(t_list **lst);
 char	*ft_revrotatesave(t_list **lst, char *result, char *str);
-
-char	*ft_strempty(void);
 
 char	*ft_putbest(t_list **a, t_list **b, char *result);
 

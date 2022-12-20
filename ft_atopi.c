@@ -6,15 +6,15 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:05:17 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/20 13:08:39 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:21:08 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static long int	ft_atolong(const char *nptr);
 static int		ft_isspace(char chr);
 static int		ft_nbdigit(char *s);
-static long int	ft_atolong(const char *nptr);
 
 void	*ft_atopi(char *str)
 {
