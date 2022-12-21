@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:52:24 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/21 15:13:11 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:17:08 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ char	*ft_putbest(t_list **a, t_list **b, char *result)
 	return (result);
 }
 
+static char	*ft_putbest_free_return(t_list **ra, t_list **rra,
+				t_list **rb, t_list **rrb)
+{
+	ft_putbest_free(ra, rra, rb, rrb);
+	return (NULL);
+}
+
 static void	ft_putbest_free(t_list **ra, t_list **rra,
 				t_list **rb, t_list **rrb)
 {
@@ -61,11 +68,4 @@ static void	ft_putbest_free_lst(t_list **lst)
 	ft_lstclear(lst, (void *)free);
 	if (p)
 		free(lst);
-}
-
-static char	*ft_putbest_free_return(t_list **ra, t_list **rra,
-				t_list **rb, t_list **rrb)
-{
-	ft_putbest_free(ra, rra, rb, rrb);
-	return (NULL);
 }
