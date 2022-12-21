@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:42:19 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/20 17:52:36 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 10:31:57 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ char	*ft_cistosorted(t_list **lst, char *result);
 char	*ft_saveswap(t_list **lst, char *result, char *str);
 char	*ft_savepush(t_list **src, t_list **dst, char *result, char *str);
 
-void	ft_get_nb_rb(t_list **rb);
-void	ft_get_nb_rrb(t_list **rrb);
-void	ft_get_nb_ra(t_list **ra, t_list **a);
-void	ft_get_nb_rra(t_list **rra, t_list **a);
+t_list	**ft_get_nb_ra(t_list **ra, t_list **a);
+t_list	**ft_get_nb_rra(t_list **rra, t_list **a);
+t_list	**ft_get_nb_rb(t_list **rb);
+t_list	**ft_get_nb_rrb(t_list **rrb);
 
 void	ft_rotate(t_list **lst);
 char	*ft_rotatesave(t_list **lst, char *result, char *str);
