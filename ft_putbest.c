@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:52:24 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/21 15:10:13 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:10:55 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,27 +62,6 @@ static void	ft_putbest_free_r(t_list **r)
 	if (p)
 		free(r);
 }
-
-/*
-static void	ft_putbest_free(t_list **ra, t_list **rra,
-				t_list **rb, t_list **rrb)
-{
-	int	p;
-	
-	p = 1;
-	if (!ra)
-		p = 0;
-	ft_lstclear(ra, (void *)free);
-	if (p)
-		free(ra);
-	ft_lstclear(rra, (void *)free);
-	ft_lstclear(rb, (void *)free);
-	ft_lstclear(rrb, (void *)free);
-	free(ra);
-	free(rra);
-	free(rb);
-	free(rrb);
-}*/
 
 static char	*ft_putbest_free_ret(t_list **ra, t_list **rra,
 				t_list **rb, t_list **rrb)
