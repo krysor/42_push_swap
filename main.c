@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:19:29 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/21 14:40:17 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:58:32 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int	main(int argc, char *argv[])
 	char	*result;
 
 	if (argc <= 1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (-1);
-	}
+		return (1);
 	input = ft_parse(argc, argv);
 	result = malloc(sizeof(char));
 	if (!result)
