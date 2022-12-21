@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   asd.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 11:41:44 by kkaczoro          #+#    #+#             */
+/*   Updated: 2022/12/21 11:41:50 by kkaczoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	ft_solve_exit(t_list **a, t_list **b, char *result);
@@ -7,7 +19,7 @@ char	*ft_solve(t_list **a)
 {
 	char	*result;
 	t_list	**b;
-	
+
 	result = malloc(sizeof(char));
 	b = (t_list **)malloc(sizeof(t_list *));
 	if (result == NULL || b == NULL)
@@ -15,13 +27,11 @@ char	*ft_solve(t_list **a)
 	result[0] = '\0';
 	if (b != NULL)
 		*b = NULL;
-	
 	if (ft_issorted(a))
 	{
 		free(b);
 		return (result);
 	}
-		
 	if (ft_iscis(a))
 	{
 		result = ft_cistosorted(a, result);
@@ -32,33 +42,23 @@ char	*ft_solve(t_list **a)
 		free(b);
 		return (result);
 	}	
-
 	result = ft_pballbutx(a, b, 3, result);
-	
 	if (!result)
 		ft_solve_exit(a, b, result);
-
 	if (!ft_iscis(a))
 		result = ft_saveswap(a, result, "sa\n\0");
-
 	if (!result)
 		ft_solve_exit(a, b, result);
-
-	//int i = 0;//delete later
-	while (ft_lstsize(*b) != 0)// && i < 4)//!ft_issorted(a)) && !ft_iscis(a)+ add the necessary conditions
+	while (ft_lstsize(*b) != 0)
 	{
-		result = ft_putbest(a, b, result); 
+		result = ft_putbest(a, b, result);
 		if (!result)
 			ft_solve_exit(a, b, result);
-		//i++;
 	}
-
 	if (!ft_issorted(a))
 		result = ft_cistosorted(a, result);
-
 	if (!result)
 		ft_solve_exit(a, b, result);
-
 	ft_lstclear(a, (void *)free);
 	ft_lstclear(b, (void *)free);
 	free(b);
@@ -81,7 +81,7 @@ static char	*ft_pballbutx(t_list **src, t_list **dst, int x, char *result)
 {
 	int		i;
 	char	*new_result;
-	
+
 	i = ft_lstsize(*src);
 	if (x < 0)
 		x = 0;
@@ -95,4 +95,3 @@ static char	*ft_pballbutx(t_list **src, t_list **dst, int x, char *result)
 	}
 	return (new_result);
 }
-
