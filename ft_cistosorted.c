@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:56:10 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/20 16:59:23 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 11:14:12 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ char	*ft_cistosorted(t_list **lst, char *result)
 	if (tie < ft_lstsize(*lst) / 2)
 	{
 		while (result != NULL && !ft_issorted(lst))
-			result = ft_rotatesave(lst, result, "ra\n\0");
+			result = ft_saverotate(lst, result, "ra\n\0");
 	}	
 	else
 	{
 		while (result != NULL && !ft_issorted(lst))
-			result = ft_revrotatesave(lst, result, "rra\n\0");
+			result = ft_saverevrotate(lst, result, "rra\n\0");
 	}
 	return (result);
 }
