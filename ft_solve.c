@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:41:44 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/21 13:43:32 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 13:50:18 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@ char	*ft_solve(char *result, t_list **a)
 	return (result);
 }
 
+static void	ft_solve_exit(char *result, t_list **a, t_list **b)
+{
+	if (result != NULL)
+		free(result);
+	ft_lstclear(a, (void *)free);
+	ft_lstclear(b, (void *)free);
+	free(a);
+	free(b);
+	ft_putstr_fd("Error\n", 2);
+	exit(-1);
+}
+
 static char	*ft_sort(char *result, t_list **a, t_list **b)
 {
 	result = ft_pballbutx(a, b, 3, result);
@@ -65,18 +77,6 @@ static char	*ft_sort(char *result, t_list **a, t_list **b)
 	if (!result)
 		ft_solve_exit(result, a, b);
 	return (result);
-}
-
-static void	ft_solve_exit(char *result, t_list **a, t_list **b)
-{
-	if (result != NULL)
-		free(result);
-	ft_lstclear(a, (void *)free);
-	ft_lstclear(b, (void *)free);
-	free(a);
-	free(b);
-	ft_putstr_fd("Error\n", 2);
-	exit(-1);
 }
 
 static char	*ft_pballbutx(t_list **src, t_list **dst, int x, char *result)

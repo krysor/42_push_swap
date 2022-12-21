@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asd.c                                              :+:      :+:    :+:   */
+/*   ft_saverevrotate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:17:44 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/21 11:17:49 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 13:55:58 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	ft_revrotate(t_list **lst);
+
+char	*ft_saverevrotate(t_list **lst, char *result, char *str)
+{
+	char	*new_str;
+
+	ft_revrotate(lst);
+	new_str = ft_strjoin(result, str);
+	free(result);
+	if (!new_str)
+		return (NULL);
+	return (new_str);
+}
 
 static void	ft_revrotate(t_list **lst)
 {
@@ -30,16 +44,4 @@ static void	ft_revrotate(t_list **lst)
 	}
 	new_last->next = NULL;
 	ft_lstadd_front(lst, old_last);
-}
-
-char	*ft_saverevrotate(t_list **lst, char *result, char *str)
-{
-	char	*new_str;
-
-	ft_revrotate(lst);
-	new_str = ft_strjoin(result, str);
-	free(result);
-	if (!new_str)
-		return (NULL);
-	return (new_str);
 }
