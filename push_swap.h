@@ -42,19 +42,13 @@ char	*ft_rotatesave(t_list **lst, char *result, char *str);
 void	ft_revrotate(t_list **lst);
 char	*ft_revrotatesave(t_list **lst, char *result, char *str);
 
+//void	ft_putlst_fd(t_list **lst, int fd);//delete at the end
+
+
 char	*ft_putbest(t_list **a, t_list **b, char *result);
-
-void	ft_putlst_fd(t_list **lst, int fd);//delete at the end
-
-
-
-void	ft_setbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
-int		*ft_getbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
 int		ft_max(int nb1, int nb2);
-
-
-char	*ft_executemoves(t_list **a, t_list **b, char *result, int *moves);
-char	*ft_executerr(t_list **a, t_list **b, char *result, int *moves);
-char	*ft_executerrr(t_list **a, t_list **b, char *result, int *moves);
+void	ft_getallbestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
+int		*ft_getthebestmoves(t_list **ra, t_list **rra, t_list **rb, t_list **rrb);
+char	*ft_makethebestmoves(t_list **a, t_list **b, char *result, int *moves);
 
 #endif
