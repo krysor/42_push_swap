@@ -15,7 +15,7 @@ char	*ft_putbest(t_list **a, t_list **b, char *result)
 	ra = ft_lstdup(b);
 	rra = ft_lstdup(b);
 	rb = ft_lstdup(b);
-	rr = ft_lstdup(b);
+	rrb = ft_lstdup(b);
 	if (ra == NULL || rra == NULL || rb == NULL || rrb == NULL)
 	{
 		ft_putbest_free(ra, rra, rb, rrb);
