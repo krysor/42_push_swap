@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:52:24 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/21 14:51:06 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:07:27 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static char	*ft_putbest_free_ret(t_list **ra, t_list **rra,
 				t_list **rb, t_list **rrb);
 static void	ft_putbest_free(t_list **ra, t_list **rra,
 				t_list **rb, t_list **rrb);
+static void ft_putbest_free_r(t_list **r);
 
 char	*ft_putbest(t_list **a, t_list **b, char *result)
 {
@@ -44,19 +45,44 @@ char	*ft_putbest(t_list **a, t_list **b, char *result)
 static void	ft_putbest_free(t_list **ra, t_list **rra,
 				t_list **rb, t_list **rrb)
 {
+	ft_putbest_free_r(ra);
+	ft_putbest_free_r(rra);
+	ft_putbest_free_r(rb);
+	ft_putbest_free_r(rrb);
+}
+
+static void ft_putbest_free_r(t_list **r)
+{
+	int	p;
+
+	p = 1;
+	if (!r)
+		p = 0;
+	ft_lstclear(r, (void *)free);
+	if (p)
+		free(r);
+}
+
+/*
+static void	ft_putbest_free(t_list **ra, t_list **rra,
+				t_list **rb, t_list **rrb)
+{
+	int	p;
+	
+	p = 1;
+	if (!ra)
+		p = 0;
 	ft_lstclear(ra, (void *)free);
+	if (p)
+		free(ra);
 	ft_lstclear(rra, (void *)free);
 	ft_lstclear(rb, (void *)free);
 	ft_lstclear(rrb, (void *)free);
-	if (!ra)
-		free(ra);
-	if (!rra)
-		free(rra);
-	if (!rb)
-		free(rb);
-	if (!rrb)
-		free(rrb);
-}
+	free(ra);
+	free(rra);
+	free(rb);
+	free(rrb);
+}*/
 
 static char	*ft_putbest_free_ret(t_list **ra, t_list **rra,
 				t_list **rb, t_list **rrb)
