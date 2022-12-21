@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:42:19 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/21 12:52:25 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 13:37:02 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 t_list	**ft_parse(int argc, char *argv[]);
 void	*ft_atopi(char *str);
 
-char	*ft_solve(t_list **a, char *result);
+char	*ft_solve(char *result, t_list **a);
 
 int		ft_issorted(t_list **lst);
 int		ft_iscis(t_list **lst);

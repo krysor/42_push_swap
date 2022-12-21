@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:19:29 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/21 13:04:01 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 13:37:20 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char *argv[])
 		return (-1);
 	}
 	result[0] = '\0';
-	result = ft_solve(input, result);
+	result = ft_solve(result, input);
 	ft_putstr_fd(result, 1);
 	ft_lstclear(input, (void *)free);
 	free(input);
