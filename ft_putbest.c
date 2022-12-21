@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asd.c                                              :+:      :+:    :+:   */
+/*   ft_putbest.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:52:24 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/12/21 10:52:32 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:51:06 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,14 @@ static void	ft_putbest_free(t_list **ra, t_list **rra,
 	ft_lstclear(rra, (void *)free);
 	ft_lstclear(rb, (void *)free);
 	ft_lstclear(rrb, (void *)free);
-	free(ra);
-	free(rra);
-	free(rb);
-	free(rrb);
+	if (!ra)
+		free(ra);
+	if (!rra)
+		free(rra);
+	if (!rb)
+		free(rb);
+	if (!rrb)
+		free(rrb);
 }
 
 static char	*ft_putbest_free_ret(t_list **ra, t_list **rra,
